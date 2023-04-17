@@ -1,0 +1,50 @@
+.navbar {    
+    width: 100%;
+    height: 60px;
+    float: left;
+    background-color: #FAFAFA;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s; 
+    align-items: center;
+}
+.navbar ul {
+    width: 90%;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #34495e;
+    text-align: right;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.navbar ul li {
+    height: 60px;
+    padding: 0px 20px;
+    float: right;
+    cursor: pointer;
+    line-height: 60px;
+}
+.topTitle {
+    width: 10%;
+    height: 100%;
+    line-height: 60px;
+    float: left;
+    color: #2e2e2e;
+    padding: 0px 10px;
+    font-size: 27px;
+    font-weight: bold;
+    font-family: "Lucida Console", Monaco, monospace;
+}
+.removeFullCarButton {
+    width: 100%;
+    height: 100%;
+    line-height: 60px;
+    background: #d32f2e;
+    color: #ffffff;
+    border-radius: 3px;
+    padding: 0px 20px;
+    cursor: pointer;
+}
