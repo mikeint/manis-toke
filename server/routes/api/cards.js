@@ -5,8 +5,6 @@ const mongoose = require('mongoose');
 
 // Load Profile Model
 const Card = require('../../models/Card');
-// Load User Model
-const User = require('../../models/User'); 
 
 /* --------------------------for image uploads------------------------ */
 const path = require('path');
@@ -138,7 +136,7 @@ router.post('/deleteFullCard', (req, res) => {
     // });
  
     // remove the card info
-    Card.deleteOne({ _id: req.body.card_id }) 
+    Card.findOneAndDelete({ _id: req.body.card_id }) 
     .then(cards => {
         if (!cards) {
             errors.noprofile = "There was no card with this id";
