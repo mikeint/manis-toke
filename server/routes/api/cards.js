@@ -5,8 +5,6 @@ const mongoose = require('mongoose');
 
 // Load Profile Model
 const Card = require('../../models/Card');
-// Load User Model
-const User = require('../../models/User'); 
 
 /* --------------------------for image uploads------------------------ */
 const path = require('path');
@@ -15,8 +13,7 @@ const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage'); 
 const Grid = require('gridfs-stream');
 const mongoURI = 'mongodb://localhost:27017/manis';
-const conn = mongoose.createConnection(mongoURI);
-let gfs; 
+const conn = mongoose.createConnection(mongoURI); 
 conn.once('open', () => {
   // Init stream
   gfs = Grid(conn.db, mongoose.mongo);
@@ -137,7 +134,7 @@ router.post('/deleteFullCard', (req, res) => {
     // });
  
     // remove the card info
-    Card.deleteOne({ _id: req.body.card_id }) 
+    Card.findOneAndDelete({ _id: req.body.card_id }) 
     .then(cards => {
         if (!cards) {
             errors.noprofile = "There was no card with this id";
