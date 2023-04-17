@@ -155,7 +155,7 @@ class AddCard extends React.Component{
                     description: this.state.description,
                     amount: this.state.amount,
                     price: this.state.price,
-                    card_id: localStorage.getItem('card_id')
+                    card_id: localStorage.getItem('card_id') || ''
                 }
                 axios.post(
                     '/api/cards/addCard',

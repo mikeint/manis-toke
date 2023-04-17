@@ -16,6 +16,7 @@ const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const mongoURI = 'mongodb://localhost:27017/manis';
 const conn = mongoose.createConnection(mongoURI);
+mongoose.set('useFindAndModify', false);
 let gfs; 
 conn.once('open', () => {
   // Init stream
@@ -90,6 +91,7 @@ router.get('/image/:filename', (req, res) => {
         }
     });
 });
+
 // @route DELETE /files/:id
 // @desc  Delete file
 router.delete('/removeImg/:id', (req, res) => {
@@ -100,6 +102,7 @@ router.delete('/removeImg/:id', (req, res) => {
         return res.json("success");
     });
 });
+
 // @route POST /addCarImg
 // @desc  add card image file to DB
 router.post('/addCardImg', upload.single('file'), async (req, res) => {
@@ -109,8 +112,6 @@ router.post('/addCardImg', upload.single('file'), async (req, res) => {
 });  
 
 
-
- 
 
 // @route       POST api/cards/deleteFullCard
 // @desc        remove full card data and images related
@@ -148,7 +149,6 @@ router.post('/deleteFullCard', (req, res) => {
     .catch(err=>res.status(404).json({cards: 'There are no cards'}));
 }); 
 
-
 // @route       GET api/cards/editCar
 // @desc        get specific card for form data
 // @access      Public
@@ -183,7 +183,6 @@ router.get('/cardList', (req, res) => {
     .catch(err=>res.status(404).json({cards: 'There are no cards'}));
 });
 
-
 // @route       POST api/Card/addCard
 // @desc        Create || Edit Card
 // @access      Private
@@ -199,37 +198,21 @@ router.post('/addCard', passport.authenticate('jwt', { session: false }), (req, 
     if(req.body.price) cardFields.price = req.body.price;
  
     // Save Card, and return the response (Card) 
-    // Find specific id
-    Card.findOne({_id: req.body.card_id}).then(Card => {
-        console.log(Card)
-        if (Card) { // Edit - if Card exists... also creates record if not.
-            Card.findOneAndUpdate(
-                { _id: req.body.card_id }, 
-                { $set: cardFields },  
-            ).then(Card => res.json(Card));
-        } else { // Create - if Card doesnt exist 
-            //dont need to because it should already be created
-            //new Card(cardFields).save().then(Card => { res.json(Card) });
-        }
-    });
+    // If the id exists 
+    if (req.body.card_id) {
+        console.log(req.body.card_id)
+        Card.findOneAndUpdate(
+            { _id: req.body.card_id }, 
+            { $set: cardFields },  
+        ).then(Card => res.json(Card));
+    // Else make new record 
+    } else {
+            new Card(cardFields).save().then(card => {
+            if (card) res.json(card)
+            else res.json("err")
+        });
+    }
+
 });
-
-// router.post('/addCard', passport.authenticate('jwt', { session: false }), (req, res) => {
-//     const cardFields = {};
-//     if(req.body.strain) cardFields.strain = req.body.strain;
-//     if(req.body.type) cardFields.type = req.body.type;
-//     if(req.body.name) cardFields.name = req.body.name;
-//     if(req.body.thc) cardFields.thc = req.body.thc;
-//     if(req.body.cbd) cardFields.cbd = req.body.cbd;
-//     if(req.body.description) cardFields.description = req.body.description;
-//     if(req.body.amount) cardFields.amount = req.body.amount;
-//     if(req.body.price) cardFields.price = req.body.price;
-
-//     new Card(cardFields).save().then(card => { 
-//         if (card) res.json(card)
-//         else res.json("err")
-//     });
-// });
-
 
 module.exports = router;
