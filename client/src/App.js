@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Login from './Admin/Login/Login';
 import AddCard from './Admin/AddCard/AddCard';
@@ -7,35 +7,25 @@ import Hub from './Admin/Hub/Hub';
 import AuthFunctions from './AuthFunctions';
 import './App.css';
 
-class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            user: '',
-            token: '',
-        };
-        this.Auth = new AuthFunctions();
-    }
+const App = () => {
+    const Auth = new AuthFunctions();
+    const [user, setUser] = useState('');
+    const [token, setToken] = useState('');
 
-    componentDidMount = () => {
-        this.setState({
-            user: this.Auth.getUser() || '',
-            token: this.Auth.getToken() || '',
-        });
-    };
+    useEffect(() => {
+        setUser(Auth.getUser() || ''), setToken(Auth.getToken() || '');
+    }, []);
 
-    render() {
-        return (
-            <BrowserRouter>
-                <Routes>
-                    <Route exact path="/hub" element={<Hub user={this.state.user} token={this.state.token} />} />
-                    <Route exact path="/addCard/:cardId?" element={<AddCard />} user={this.state.user} token={this.state.token} />
-                    <Route exact path="/login" element={<Login />} />
-                    <Route exact path="/strain/:strain" element={<CardsContainer />} />
-                </Routes>
-            </BrowserRouter>
-        );
-    }
-}
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route exact path="/hub" element={<Hub user={user} token={token} />} />
+                <Route exact path="/addCard/:cardId?" element={<AddCard />} user={user} token={token} />
+                <Route exact path="/login" element={<Login />} />
+                <Route exact path="/strain/:strain" element={<CardsContainer />} />
+            </Routes>
+        </BrowserRouter>
+    );
+};
 
 export default App;

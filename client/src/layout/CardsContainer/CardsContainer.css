@@ -42,30 +42,38 @@
     font-size: 25px;
 }
 
-.card__newItem {
-    background-color:#c5c557;
-    font-size:26px;
-    width:200px;
-    text-align:center;
-    height:40px;
-    font-weight: bold;
-    color:#000;
-    line-height:40px;
-    position: absolute;
-    right: -50px;
-    top: 30px;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    overflow: hidden;
 
+.card__newItem,
+.card__reccoItem {
+    font-size: 14px;
+    width: 200px;
+    height: 25px;
+    font-weight: bold;
+    color: #000;
+    line-height: 25px;
+    position: absolute;
+    right: -54px;
+    top: 35px;
+    transform: rotate(45deg);
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid #fff;
+    background-color: #c5c557;
     box-shadow: 2px 0px 10px 5px #c5c557;
-    border: 1px solid white;
 }
-.card__newItem::after {
+.card__reccoItem {
+    right: -145px;
+    top: 65px;
+    width: 435px;
+    font-weight: normal;
+    color: #fff;
+    border: 1px solid #b3958e;
+    background-color: #9f5e53;
+    box-shadow: 2px 0px 10px 5px #9f5e53;
+}
+
+.card__newItem::after,
+.card__reccoItem::after {
     content: '';
     position: absolute;
     top: -100px;
@@ -93,7 +101,8 @@
     }
 }
 
-.card__newItemHide {
+.card__newItemHide,
+.card__reccoItemHide {
     display: none;
 }
 
@@ -108,30 +117,40 @@
     font-weight: bold;
     text-align: center;
 }
+.card__nameCross {
+    padding: 0px 0px 10px 0px;
+    text-align: center;
+    font-size: 14px;
+}
 .card__values-container {
     display: flex;
     justify-content: center;
     color: #fff;
 }
 .card__values-thc {
+    width: 85px;
+    height: 85px;
     background-color: #000;
     padding: 15px;
     margin-right: 10px;
-    font-size: 22px;
+    font-size: 20px;
     text-align: center;
     border: 3px solid blueviolet;
 }
+
 .card__values-cbd {
+    width: 85px;
+    height: 85px;
     background-color: #000;
     padding: 15px;
     margin-right: 10px;
-    font-size: 22px;
+    font-size: 20px;
     text-align: center;
     border: 3px solid blueviolet;
 }
 .card__description {
     margin: 10px;
-    height: 185px;
+    height: 165px;
     overflow-y: scroll;
     font-size: 0.8em;
 }
@@ -141,27 +160,32 @@
 
 
 .card__price-container {
+    width: 80px;
+    height: 55px;
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 6px;
     background: #000;
     color: #fff;
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .card__image {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
     width: 220px;
     height: 60px;
-    /* background-image: url("./images/logo1.png"); */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     animation: animName 3s linear infinite;
+    position: absolute;
+    bottom: 10px;
 }
 .card__image img {
     width: 50px;
@@ -203,16 +227,3 @@
 .card__topContainer.Sativa {background-image: url("../../layout/images/logo_sativa.png");}
 .card__topContainer.Hybrid {background-image: url("../../layout/images/logo_hybrid.png");}
 
-
-
-/* BACK-CARD STYLES */
-.weed_image {
-    height: 100%;
-    width: 100%;
-    /* background-image: url("../images/weed/weed.jpg"); */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-/* end BACK-CARD STYLES */

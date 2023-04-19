@@ -12,6 +12,9 @@ const Cardschema = new Schema({
     name: {
         type: String,
     },
+    nameCross: {
+        type: String,
+    },
     thc: {
         type: String,
     },
@@ -28,6 +31,9 @@ const Cardschema = new Schema({
         type: String,
     },
     newCheckBtn: {
+        type: Boolean,
+    },
+    recommendCheckBtn: {
         type: Boolean,
     },
     company_image: {

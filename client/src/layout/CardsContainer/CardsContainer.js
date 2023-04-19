@@ -41,9 +41,13 @@ const CardsContainer = () => {
                                         <div className={'card__strain ' + card.strain}>{card.strain}</div>
                                         <div className={'card__strain-smtext ' + card.strain}>{card.type}</div>
                                         <div className={card.newCheckBtn ? 'card__newItem' : 'card__newItemHide'}>NEW</div>
+                                        <div className={card.recommendCheckBtn ? 'card__reccoItem' : 'card__reccoItemHide'}>
+                                            Manis Toke of choice
+                                        </div>
                                     </div>
                                     <div className="card__bottomContainer">
                                         <div className="card__name">{card.name}</div>
+                                        {card.nameCross ? <div className="card__nameCross">{card.nameCross}</div> : null}
                                         <div className="card__values-container">
                                             <div className={'card__values-thc ' + card.strain}>
                                                 <div className="card__values-thc-name">THC</div>
@@ -67,11 +71,6 @@ const CardsContainer = () => {
                                             <div className="card__price">${card.price}</div>
                                         </div>
                                     </div>
-                                </section>
-                            </div>
-                            <div className="back">
-                                <section>
-                                    <div className="weed_image"></div>
                                 </section>
                             </div>
                         </div>

@@ -105,14 +105,14 @@ router.post('/addCard', upload.single('company_image'), passport.authenticate('j
     if (req.body.strain) cardFields.strain = req.body.strain;
     if (req.body.type) cardFields.type = req.body.type;
     if (req.body.name) cardFields.name = req.body.name;
+    if (req.body.nameCross) cardFields.nameCross = req.body.nameCross;
     if (req.body.thc) cardFields.thc = req.body.thc;
     if (req.body.cbd) cardFields.cbd = req.body.cbd;
     if (req.body.description) cardFields.description = req.body.description;
     if (req.body.amount) cardFields.amount = req.body.amount;
     if (req.body.price) cardFields.price = req.body.price;
     if (req.body.newCheckBtn != null) cardFields.newCheckBtn = req.body.newCheckBtn;
-
-    console.log(cardFields);
+    if (req.body.recommendCheckBtn != null) cardFields.recommendCheckBtn = req.body.recommendCheckBtn;
 
     if (req.file) {
         cardFields.company_image = {

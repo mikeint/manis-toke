@@ -195,5 +195,24 @@
     resize: none;
 }
 
+.card__name_static {
+    padding: 0px 10px !important;
+}
+
+.card__values-thc_static {
+    padding: 5px !important;
+    margin-top: 10px;
+}
+.card__price-container_static {
+    width: 100px;
+    height: 70px;
+}
+.card__price-container_static .form-amount {
+    width: 80px;
+}
+.card__price-container_static .form-price {
+    width: 70px;
+}
+
 
 /* end STYLES FOR BACKEND INPUTS */
