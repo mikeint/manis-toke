@@ -3,8 +3,8 @@ export default class AuthService {
 
     loggedIn() {
         // Checks if there is a saved token and it's still valid
-        const token = this.getToken() // Getting token from localstorage
-        return !!token;// handwaiving here
+        const token = this.getToken(); // Getting token from localstorage
+        return !!token; // handwaiving here
     }
 
     setToken(token, callback) {
@@ -13,7 +13,7 @@ export default class AuthService {
     }
 
     getToken() {
-        return localStorage.getItem('token')
+        return localStorage.getItem('token');
     }
 
     setUser(user, callback) {
@@ -25,22 +25,9 @@ export default class AuthService {
         return JSON.parse(localStorage.getItem('user'));
     }
 
-
-    /* CARD auth */
-    setCardId = (id) => {
-        console.log(id);
-        localStorage.setItem("card_id", id);
-    } 
-    getCardId() {
-        return localStorage.getItem("card_id");
-    }
-    /* CARD auth */
-
-
     logout() {
         // Clear user token and profile data from localStorage
         localStorage.removeItem('token');
         localStorage.removeItem('user');
     }
-
 }

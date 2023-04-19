@@ -1,0 +1,218 @@
+
+.cardsContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.card {
+    width: 315px;
+    position: relative;
+    height: 550px;
+    border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    cursor: pointer;
+    background: #fff;
+    position: relative;
+    -webkit-transition: 0.6s;
+    transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    box-shadow: 0 1px 5px 0px #2E2E33;
+    overflow: hidden;
+}
+
+/* TOP CONTAINER */
+.card__topContainer {
+    width: 100%;
+    height: 135px;
+    background-color: #000;
+    color: blueviolet;
+    padding: 10px;
+    background-image: url("../images/logo_indica.png");
+    background-size: 140px;
+    background-repeat: no-repeat;
+    background-position: 150px;
+}
+.card__strain {
+    font-size: 45px;
+}
+.card__strain-smtext{
+    font-size: 25px;
+}
+
+.card__newItem {
+    background-color:#c5c557;
+    font-size:26px;
+    width:200px;
+    text-align:center;
+    height:40px;
+    font-weight: bold;
+    color:#000;
+    line-height:40px;
+    position: absolute;
+    right: -50px;
+    top: 30px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+
+    box-shadow: 2px 0px 10px 5px #c5c557;
+    border: 1px solid white;
+}
+.card__newItem::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 50px;
+    height: 50px;
+    background-image: linear-gradient(100deg,  rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 1) 100%, rgba(255, 255, 255, 0) 0%);
+    animation-name: shiny;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+@keyframes shiny {
+    0% {
+        transform: scale(0) rotate(25deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1) rotate(25deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(50) rotate(25deg);
+        opacity: 0;
+    }
+}
+
+.card__newItemHide {
+    display: none;
+}
+
+/* end TOP CONTAINER */
+
+
+/* BOTTOM CONTAINER */
+.card__bottomContainer {}
+.card__name {
+    padding: 10px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+}
+.card__values-container {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+}
+.card__values-thc {
+    background-color: #000;
+    padding: 15px;
+    margin-right: 10px;
+    font-size: 22px;
+    text-align: center;
+    border: 3px solid blueviolet;
+}
+.card__values-cbd {
+    background-color: #000;
+    padding: 15px;
+    margin-right: 10px;
+    font-size: 22px;
+    text-align: center;
+    border: 3px solid blueviolet;
+}
+.card__description {
+    margin: 10px;
+    height: 185px;
+    overflow-y: scroll;
+    font-size: 0.8em;
+}
+.card__description::-webkit-scrollbar {
+    display: none;
+}
+
+
+.card__price-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 6px;
+    background: #000;
+    color: #fff;
+    font-size: 22px;
+    text-align: center;
+}
+.card__image {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    height: 60px;
+    /* background-image: url("./images/logo1.png"); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: animName 3s linear infinite;
+}
+.card__image img {
+    width: 50px;
+}
+
+@keyframes animName {
+    0%{
+        transform: rotateY(0deg);
+    }
+    100%{
+        transform: rotateY(360deg);
+    }
+}
+/* end BOTTOM CONTAINER */
+
+
+
+.form-strain.Indica,
+.card__strain.Indica,
+.card__strain-smtext.Indica,
+.card__strain-smtext.Indica input {color: #8a2be2;}
+.form-strain.Sativa,
+.card__strain.Sativa,
+.card__strain-smtext.Sativa,
+.card__strain-smtext.Sativa input {color: #91271a;}
+.form-strain.Hybrid,
+.card__strain.Hybrid,
+.card__strain-smtext.Hybrid,
+.card__strain-smtext.Hybrid input {color: #117b4d;}
+
+.card__values-thc.Indica,
+.card__values-cbd.Indica {border: 3px solid #8a2be2;}
+.card__values-thc.Sativa,
+.card__values-cbd.Sativa {border: 3px solid #91271a;}
+.card__values-thc.Hybrid,
+.card__values-cbd.Hybrid {border: 3px solid #117b4d;}
+
+.card__topContainer.Indica {background-image: url("../../layout/images/logo_indica.png");}
+.card__topContainer.Sativa {background-image: url("../../layout/images/logo_sativa.png");}
+.card__topContainer.Hybrid {background-image: url("../../layout/images/logo_hybrid.png");}
+
+
+
+/* BACK-CARD STYLES */
+.weed_image {
+    height: 100%;
+    width: 100%;
+    /* background-image: url("../images/weed/weed.jpg"); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* end BACK-CARD STYLES */

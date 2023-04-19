@@ -1,297 +1,339 @@
-import React from 'react';
-import './AddCard.css'; 
-import { Redirect} from "react-router-dom";
+import { useState, useMemo, useEffect } from 'react';
+import './AddCard.css';
 import axios from 'axios';
 import AuthFunctions from '../../AuthFunctions';
 import NavBar from '../NavBar/NavBar';
- 
-import 'sweetalert2/src/sweetalert2.scss'; 
-import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+import 'sweetalert2/src/sweetalert2.scss';
+import swal from 'sweetalert2/dist/sweetalert2.all.min.js';
+import { useParams } from 'react-router-dom';
 
-class AddCard extends React.Component{
+const AddCard = () => {
+    const { cardId } = useParams();
+    const [state, setState] = useState({
+        strain: '',
+        type: '',
+        name: '',
+        thc: '',
+        cbd: '',
+        description: '',
+        amount: '',
+        price: '',
+        data_id: '',
+        thumbnail: '',
+        default_img: '',
+        errors: '',
+        company_image: '',
+        newCheckBtn: false,
+    });
+    const Auth = useMemo(() => new AuthFunctions(), []);
 
-    constructor(props){
-        super(props);
-        this.state={
-            strain: '',
-            type: '',
-            name: '',
-            thc: '',
-            cbd: '',  
-            description: '',
-            amount: '',
-            price: '',
+    useEffect(() => {
+        console.log(cardId);
+        if (cardId != null) setInputFields();
+    }, []);
 
-            data_id: '', 
-            thumbnail: '',
-            default_img: '',  
-            errors: '', 
-
-            images: '',
-        };
-        this.Auth = new AuthFunctions();
-    } 
-    
-	componentDidMount = () => {
-        this.getCarImgs();
-        if (localStorage.getItem('card_id') != null) this.setInputFields();
-        this.getCardId();
-    }
-    
-
-    getCardId = () => {
-        return localStorage.getItem("card_id");
-    }
-
-    handleChange = (event) => {
+    const handleChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        this.setState({
-            [name]: value
+        setState({
+            ...state,
+            [name]: value,
         });
-    }
+    };
 
- 
-	getCarImgs = () => {
-        var params = { params: { card_id: this.getCardId() } }
-        
-		axios.get('/api/cards/getImgs', params)
-          .then((res)=>{
-			//console.log(res.data)
-			//return window.location = "/hub";
-			this.setState({
-				images: res.data
-			})
-		})
-    }
-    setInputFields = () => {
-        var params = { params: { card_id: this.getCardId() } } 
+    const setInputFields = () => {
+        const params = { params: { card_id: cardId } };
 
-        axios.get('/api/cards/getCardData', params)
-        .then(res => {
-            console.log(res.data[0])
-            var data=res.data[0];
-            this.setState({ 
-                strain: data.strain || "",
-                type: data.type || "",
-                name: data.name || "",
-                thc: data.thc || "",
-                cbd: data.cbd || "",
-                description: data.description || "",
-                amount: data.amount || "",
-                price: data.price || "",
-            }); 
+        axios
+            .get('/api/cards/getCardData', params)
+            .then((res) => {
+                console.log(res.data[0]);
+                const data = res.data[0];
+                setState({
+                    ...state,
+                    strain: data.strain || '',
+                    type: data.type || '',
+                    name: data.name || '',
+                    thc: data.thc || '',
+                    cbd: data.cbd || '',
+                    description: data.description || '',
+                    amount: data.amount || '',
+                    price: data.price || '',
+                    newCheckBtn: data.newCheckBtn || false,
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
-    }
+    const clearFileInput = (id) => {
+        const oldInput = document.getElementById(id);
+        const newInput = document.createElement('input');
+        newInput.type = 'file';
+        newInput.id = oldInput.id;
+        newInput.name = oldInput.name;
+        newInput.className = oldInput.className;
+        newInput.style.cssText = oldInput.style.cssText;
+        // TODO: copy any other relevant attributes
 
-
-
-	addCarImg = () => {
-		var input = document.querySelector('input[type="file"]').files[0];
-		const data = new FormData(); 
-		data.append('action', 'ADD');
-		data.append('param', 0);
-		data.append('secondParam', 0);
-        data.append('cardid', this.getCardId());
-        data.append('file', input, { type: 'multipart/form-data' });
-        
-
-		if (input) {
-			axios.post('/api/cards/addCardImg', data).then((response) => {
-				console.log(response)
-				this.getCarImgs();
-			});
-		}
-		this.clearFileInput("file");
-	} 
-	clearFileInput = (id) => { 
-		var oldInput = document.getElementById(id);  
-		var newInput = document.createElement("input");  
-		newInput.type = "file"; 
-		newInput.id = oldInput.id; 
-		newInput.name = oldInput.name; 
-		newInput.className = oldInput.className; 
-		newInput.style.cssText = oldInput.style.cssText; 
-		// TODO: copy any other relevant attributes 
-
-		oldInput.parentNode.replaceChild(newInput, oldInput); 
-    }
-    deleteOneCarImg = (id) => {
-		axios.delete('/api/cards/removeImg/'+id).then((response) => {
-			console.log(response)
-			this.getCarImgs();
-		}); 
-    }
-    
+        oldInput.parentNode.replaceChild(newInput, oldInput);
+    };
 
     /* INPUT TEXT */
-    addCard = () => {
-
-        Swal({
+    const addCard = () => {
+        swal({
             title: 'Are you sure?',
-            text: "You can edit this card later", 
+            text: 'You can edit this card later',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, save it!'
+            confirmButtonText: 'Yes, save it!',
         }).then((result) => {
             if (result.value) {
- 
-                var config = {
-                    headers: {'Authorization': 'Bearer ' + this.Auth.getToken(), 'Content-Type': 'application/json' }
-                }; 
-                var bodyParameters = {
-                    strain: this.state.strain,
-                    type: this.state.type,
-                    name: this.state.name,
-                    thc: this.state.thc,
-                    cbd: this.state.cbd, 
-                    description: this.state.description,
-                    amount: this.state.amount,
-                    price: this.state.price,
-                    card_id: localStorage.getItem('card_id') || ''
-                }
-                axios.post(
-                    '/api/cards/addCard',
-                    bodyParameters,
-                    config
-                ).then((res)=>{
-                    console.log("card added: ", res.data);
-                    localStorage.removeItem("card_id");
-                    return window.location = "/hub";
-                }).catch(error => {
-                    console.log(error.response.data.join(".\n"));
- 
-                    Swal({
-                        title: "Some errors here:",
-                        text: error.response.data.join(".\n"),
-                        type: 'error',
-                        animation: true,
-                        customClass: 'animated tada'
-                    }) 
-                });
-            }
-        }) 
-    }
+                const input = document.querySelector('input[type="file"]').files[0];
+                const data = new FormData();
 
-    deleteFullCard = () => {
-        
-        Swal({
-            title: 'Are you sure you want to remove this card and all its images?', 
+                const config = {
+                    headers: { Authorization: 'Bearer ' + Auth.getToken(), 'Content-Type': 'application/json' },
+                };
+
+                data.append('strain', state.strain);
+                data.append('type', state.type);
+                data.append('name', state.name);
+                data.append('thc', state.thc);
+                data.append('cbd', state.cbd);
+                data.append('description', state.description);
+                data.append('amount', state.amount);
+                data.append('price', state.price);
+                data.append('card_id', cardId || '');
+                data.append('newCheckBtn', state.newCheckBtn || false);
+                input ? data.append('company_image', input, { type: 'multipart/form-data' }) : '';
+
+                axios
+                    .post('/api/cards/addCard', data, config)
+                    .then((res) => {
+                        console.log('card added: ', res.data);
+                        cardId;
+                        return (window.location = '/hub');
+                    })
+                    .catch((error) => {
+                        swal({
+                            title: 'Some errors here:',
+                            text: error.response.data,
+                            type: 'error',
+                            animation: true,
+                            customClass: 'animated tada',
+                        });
+                    });
+                clearFileInput('company_image');
+            }
+        });
+    };
+
+    const deleteFullCard = () => {
+        swal({
+            title: 'Are you sure you want to remove this card and all its images?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, remove it!'
+            confirmButtonText: 'Yes, remove it!',
         }).then((result) => {
             if (result.value) {
-                var config = {
-                    headers: {'Authorization': 'Bearer ' + this.Auth.getToken(), 'Content-Type': 'application/json' }
-                }; 
-                var bodyParameters = {
-                    card_id: this.getCardId(), 
-                }
-                axios.post('/api/cards/deleteFullCard', bodyParameters, config)
-                .then((res)=>{
-                    console.log("card removed: ", res.data);
-                    localStorage.removeItem("card_id");
-                    return window.location = "/hub";
-                })
+                const config = {
+                    headers: { Authorization: 'Bearer ' + Auth.getToken(), 'Content-Type': 'application/json' },
+                };
+                const bodyParameters = {
+                    card_id: cardId,
+                };
+                axios.post('/api/cards/deleteFullCard', bodyParameters, config).then((res) => {
+                    console.log('card removed: ', res.data);
+                    return (window.location = '/hub');
+                });
             }
-        })
-    }
+        });
+    };
 
-    makePrime = (filename) => {
-        var config = {
-            headers: {'Authorization': 'Bearer ' + this.Auth.getToken(), 'Content-Type': 'application/json' }
-        }; 
-        var bodyParameters = {
-            card_id: this.getCardId(),
-            filename: filename,
-        }
-        axios.post('/api/cards/makePrime', bodyParameters, config)
-        .then((res)=>{
-            console.log("prime changes: ", res); 
-            this.getCarImgs();
-        })
-    }
- 
-    render(){    
-        if(this.state.logout){
-            return <Redirect to='/login'/>
-        }
+    const handleImageChange = (e) => {
+        const files = e.target.files[0];
 
-        if (this.state.images) {
-			var images = this.state.images.map((image, i) => (
-				<div key={i} className="imgContainer">
-                    <div className="primeImgBtn" onClick={() => this.makePrime(image.filename)}>
-                        {image.metadata.primeImg === "yes" ? <div className="primeBanner">Prime Image</div> : ""}
-                        <img id={image._id} className="imgStyle" src={"/api/cards/image/" + image.filename} alt={"img"+i} /> 
-                          
+        if (files) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(files);
+            fileReader.addEventListener('load', function () {
+                setState({
+                    ...state,
+                    company_image_new: this.result,
+                });
+            });
+        }
+    };
+
+    return (
+        <>
+            <NavBar deleteFullCard={deleteFullCard} deleteButton={true} />
+
+            <div className="cardsContainer cardsContainer_static">
+                <div className="card card_static">
+                    <div className="front">
+                        <section>
+                            <div className={'card__topContainer ' + state.strain}>
+                                <div className="card__strain">
+                                    {/* <input
+                                        name="strain"
+                                        type="text"
+                                        placeholder="Strain"
+                                        className={'form-strain ' + state.strain}
+                                        onChange={handleChange}
+                                        value={state.strain}
+                                    /> */}
+                                    <select
+                                        name="strain"
+                                        type="text"
+                                        placeholder="Strain"
+                                        className={'form-strain ' + state.strain}
+                                        onChange={handleChange}
+                                        value={state.strain}
+                                    >
+                                        <option value="Indica">Indica</option>
+                                        <option value="Sativa">Sativa</option>
+                                        <option value="Hybrid">Hybrid</option>
+                                    </select>
+                                </div>
+                                <div className={'card__strain-smtext ' + state.strain}>
+                                    <input
+                                        name="type"
+                                        type="text"
+                                        placeholder="type"
+                                        className="form-type"
+                                        onChange={handleChange}
+                                        value={state.type}
+                                    />
+                                </div>
+                            </div>
+                            <div className="card__bottomContainer">
+                                <div className="card__name">
+                                    <input
+                                        name="name"
+                                        type="text"
+                                        placeholder="name"
+                                        className="form-name"
+                                        onChange={handleChange}
+                                        value={state.name}
+                                    />
+                                </div>
+                                <div className="card__values-container">
+                                    <div className={'card__values-thc ' + state.strain}>
+                                        <div className="card__values-thc-name">THC</div>
+                                        <div className="card__values-thc-value">
+                                            <input
+                                                name="thc"
+                                                type="text"
+                                                placeholder="thc"
+                                                className="form-thc"
+                                                onChange={handleChange}
+                                                value={state.thc}
+                                            />
+                                            %
+                                        </div>
+                                    </div>
+                                    <div className={'card__values-cbd ' + state.strain}>
+                                        <div className="card__values-thc-name">CBD</div>
+                                        <div className="card__values-thc-value">
+                                            <input
+                                                name="cbd"
+                                                type="text"
+                                                placeholder="cbd"
+                                                className="form-thc"
+                                                onChange={handleChange}
+                                                value={state.cbd}
+                                            />
+                                            %
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card__description card__description_static">
+                                    <textarea
+                                        name="description"
+                                        type="text"
+                                        placeholder="description"
+                                        className="form-description"
+                                        onChange={handleChange}
+                                        value={state.description}
+                                    />
+                                </div>
+                                <div className="card__image card__image_static">
+                                    <div className="addImgContainer">
+                                        <div className="imgContainer imgContainer_static">
+                                            <input
+                                                type="file"
+                                                name="company_image"
+                                                id="company_image"
+                                                accept="image/*"
+                                                onChange={handleImageChange}
+                                            />
+                                            <img
+                                                className="imgStyle"
+                                                src={
+                                                    state.company_image_new
+                                                        ? state.company_image_new
+                                                        : '/api/cards/image/' + cardId + '/company_image'
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card__price-container">
+                                    <div className="card__grams">
+                                        <input
+                                            name="amount"
+                                            type="text"
+                                            placeholder="amount"
+                                            className="form-amount"
+                                            onChange={handleChange}
+                                            value={state.amount}
+                                        />
+                                    </div>
+                                    <div className="card__price">
+                                        $
+                                        <input
+                                            name="price"
+                                            type="text"
+                                            placeholder="price"
+                                            className="form-price"
+                                            onChange={handleChange}
+                                            value={state.price}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-					<div className="deleteImgBtn" onClick={() => this.deleteOneCarImg(image._id)}>Delete</div>
-				</div>
-			))
-        }
-        
-        return (
-            
-            <React.Fragment>
-                <NavBar 
-                    deleteFullCard={this.deleteFullCard}
-                    deleteButton={true}
-                />  
-
-
-                <div className="addImgContainer">
-                    {images ? images : <div className="loadingContainer"><div className="loadContainer"><div className="load-shadow"></div><div className="load-box"></div></div></div>}
-                    <div className="imgContainer">  
-                        <div className="custom-file mb-3">
-                            <input type="file" name="file" id="file" /> 
-                        </div>
-                        <div className="submitImg" onClick={this.addCarImg}>+</div>
+                    <div className="back">
+                        <section>
+                            <div className="weed_image"></div>
+                        </section>
                     </div>
                 </div>
-                
+            </div>
 
+            <div className="setNewContainer">
+                <input type="checkbox" className="newCheckBtn" name="newCheckBtn" onChange={handleChange} checked={state.newCheckBtn} />
+                <label htmlFor="newCheckBtn" className="newCheckLbl">
+                    New
+                </label>
+            </div>
 
-                <div className="addCarContainer">
-                    <div className="inputContainer">
-                        <input
-                            name='strain'
-                            type='text'
-                            placeholder='Strain'
-                            className='form-control'
-                            onChange={this.handleChange}
-                            value={this.state.strain}
-                        />
-                    </div>
-                    <div className="inputContainer">
-                        <input
-                            name='type'
-                            type='text'
-                            placeholder='type'
-                            className='form-control'
-                            onChange={this.handleChange}
-                            value={this.state.type}
-                        />
-                    </div>
-                </div> 
-
-                <div className='createBtnContainer'>
-                    <div className='createBtn' onClick={this.addCard}>
-                        <a target="_blank">Save</a>
-                    </div>
-                </div> 
-            </React.Fragment>
-        );
-    }
+            <div className="createBtnContainer">
+                <div className="createBtn" onClick={addCard}>
+                    <a target="_blank">SAVE</a>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default AddCard;

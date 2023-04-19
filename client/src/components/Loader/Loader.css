@@ -1,0 +1,75 @@
+/* Loader - SPIN CUBE */
+.loadContainer {
+    position: absolute; 
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+    margin-top: 65px; 
+}
+@media only screen and (max-width: 1050px) { .loadContainer { margin-top: 60px;  }} /* for stupid mobile center div */
+@-webkit-keyframes loader {
+    0% { left: -100px }
+    100% { left: 110%; }
+}
+@keyframes loader {
+    0% { left: -100px }
+    100% { left: 110%; }
+}
+.load-box {
+    width: 50px;
+    height: 50px;
+    background: #0b8340; /* #8dacdc; */
+    -webkit-animation: animate .5s linear infinite;
+            animation: animate .5s linear infinite; 
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+}
+@-webkit-keyframes animate {
+    17% { border-bottom-right-radius: 3px; }
+    25% { -webkit-transform: translateY(9px) rotate(22.5deg); transform: translateY(9px) rotate(22.5deg); }
+    50% {
+    -webkit-transform: translateY(18px) scale(1,.9) rotate(45deg) ;
+            transform: translateY(18px) scale(1,.9) rotate(45deg) ;
+    border-bottom-right-radius: 40px;
+    }
+    75% { -webkit-transform: translateY(9px) rotate(67.5deg); transform: translateY(9px) rotate(67.5deg); }
+    100% { -webkit-transform: translateY(0) rotate(90deg); transform: translateY(0) rotate(90deg); }
+}
+@keyframes animate {
+    17% { border-bottom-right-radius: 3px; }
+    25% { -webkit-transform: translateY(9px) rotate(22.5deg); transform: translateY(9px) rotate(22.5deg); }
+    50% {
+    -webkit-transform: translateY(18px) scale(1,.9) rotate(45deg) ;
+            transform: translateY(18px) scale(1,.9) rotate(45deg) ;
+    border-bottom-right-radius: 40px;
+    }
+    75% { -webkit-transform: translateY(9px) rotate(67.5deg); transform: translateY(9px) rotate(67.5deg); }
+    100% { -webkit-transform: translateY(0) rotate(90deg); transform: translateY(0) rotate(90deg); }
+} 
+.load-shadow { 
+    width: 50px;
+    height: 5px;
+    background: #092437;
+    opacity: 0.5; 
+    top: 59px; 
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+    -webkit-animation: shadow .5s linear infinite;
+            animation: shadow .5s linear infinite;
+}
+@-webkit-keyframes shadow {
+  50% {
+    -webkit-transform: scale(1.2,1);
+            transform: scale(1.2,1);
+  }
+}
+@keyframes shadow {
+  50% {
+    -webkit-transform: scale(1.2,1);
+            transform: scale(1.2,1);
+  }
+}
+/* end SPIN CUBE */

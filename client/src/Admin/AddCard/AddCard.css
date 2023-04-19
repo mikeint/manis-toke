@@ -16,14 +16,14 @@
     position: relative;
     float: left;
     margin-bottom: 10px;
-} 
+}
 .inputContainer input {
     width: 100%;
     height: 40px;
     float: left;
     font-size: 16px;
     padding-left: 10px;
-    color: #2e2e2e; 
+    color: #2e2e2e;
     border: 0;
     border-radius: 3px;
 }
@@ -31,41 +31,30 @@
     padding-bottom:20px;
 }
 
-.primeBanner {
-    width: 100%;
-    background: #71b87a;
-    position: absolute;
-    padding: 2px;
-    text-align: center;
-    color: white; 
-    transition: 0.3s;
-}
-
-
 
 /* ADD CARD BUTTON */
 .createBtnContainer {
-    width: 100%;
+    width: 315px;
     height: 60px;
-    margin-top: 40px;
-    float: left;
-    bottom: 0px; 
+    margin: auto;
 }
 .createBtn {
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
-    color: #2e2e2e;
+    color: #fff;
     line-height: 60px;
     text-align: center;
     font-weight: bold;
+    background: #0b834182;
     font-size: 24px;
     cursor: pointer;
-    box-shadow: 0px 0px 5px 1px #2e2e2e;
     transition: 0.3s;
+    box-shadow: 0 1px 5px 0px #2E2E33;
+    border-radius: 3px;
 }
 .createBtn:hover {
-    box-shadow: 0px 0px 1px 0px #2e2e2e;
+    background:#0b8341e6;
+    box-shadow: none;
 }
 /* ADD CARD BUTTON */
 
@@ -73,10 +62,6 @@
 
 .addImgContainer {
     width: 100%;
-    display: inline-block;
-    background: #0b834182;
-    padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .imgContainer {
@@ -84,49 +69,131 @@
     height: 120px;
     float: left;
     position: relative;
-    margin: 5px; 
+    margin: 5px;
     transition: 0.3s;
 }
-.imgContainer:hover { 
+.imgContainer:hover {
     box-shadow: none;
 }
 .deleteImgBtn {
-    width: 150px; 
+    width: 150px;
     cursor: pointer;
     background: #dc555594;
     color: #dc555594;
     text-align: center;
-    transition:transform 0.3s ease-out; 
+    transition:transform 0.3s ease-out;
     transform:scaleY(0.15);
     transform-origin:bottom;
 }
-.deleteImgBtn:hover {  
-    background: #dc5555; 
-    color: #ffffff;  
+.deleteImgBtn:hover {
+    background: #dc5555;
+    color: #ffffff;
     position: absolute;
     height: 120px;
     line-height: 120px;
-    transform:scaleY(1); 
+    transform:scaleY(1);
 }
-.imgStyle {
-    width: 150px;
-    height: 100px;
-    float:left;
+
+.setNewContainer {
+    display: flex;
+    margin: auto;
+    width: 310px;
+    padding: 0px 0px 10px;
+}
+.newCheckBtn {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    accent-color: #80bd9b;
+}
+.newCheckLbl {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
 }
 
 .submitImg {
-    width: 150px;
-    height: 100px;
-    line-height: 100px;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
     font-size: 60px;
-    background: #0b834182;
-    border-radius: 10px;
+    background: #e1e1e182;
+    border-radius: 3px;
     text-align: center;
     cursor: pointer;
     transition: 0.3s;
-    color: #ffffff;
+    color: #000;
+}
+.submitImg:hover {
+    background-color: #0b83415d;
 }
 
-.submitImg:hover {
-    background-color: #0b8341be; 
+
+/* STYLES FOR BACKEND static INPUTS */
+.form-strain {
+    width: 200px;
+    height: 40px;
+    font-size: 35px;
 }
+.form-name {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+.form-thc {
+    width: 50px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+.form-amount {
+    width: 60px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+.form-price {
+    width: 60px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+.form-description {
+    width: 275px;
+    height: 160px;
+}
+
+.card__image_static {
+    animation: none !important;
+    width: 220px;
+    height: 76px;
+}
+.imgContainer_static {
+    width: 100% !important;
+    height: 76px !important;
+    margin: 0px !important;
+    float: none !important;
+}
+.card_static {
+    box-shadow: 0 1px 5px 0px #2E2E33;
+    cursor: none;
+}
+.card_static:hover {
+    cursor: default;
+}
+.cardsContainer_static {
+    margin: auto;
+    justify-content: center;
+}
+.card__description_static {
+    overflow: unset !important;
+    height: 169px !important;
+}
+.card__description_static textarea {
+    resize: none;
+}
+
+
+/* end STYLES FOR BACKEND INPUTS */

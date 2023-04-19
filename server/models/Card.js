@@ -27,15 +27,17 @@ const Cardschema = new Schema({
     price: {
         type: String,
     },
-
-    primeImg: {
-        type: String,
-        default: ''
+    newCheckBtn: {
+        type: Boolean,
+    },
+    company_image: {
+        data: Buffer,
+        contentType: String,
     },
     date: {
         type: Date,
-        default: Date.now
-    }
+        default: Date.now,
+    },
 });
 
-module.exports = Card = mongoose.model('cards', Cardschema); 
+module.exports = Card = mongoose.model('cards', Cardschema);

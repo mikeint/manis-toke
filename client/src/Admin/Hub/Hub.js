@@ -1,94 +1,81 @@
 import React from 'react';
-import './Hub.css';  
+import './Hub.css';
 import AuthFunctions from '../../AuthFunctions';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from '../NavBar/NavBar';
+import Loader from '../../components/Loader/Loader';
 
-class Hub extends React.Component{
-
-    constructor(props){
+class Hub extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={ 
+        this.state = {
             logout: false,
             user: '',
             cardList: '',
             searchTerm: '',
-            tabState: '1',
-        }
+        };
         this.Auth = new AuthFunctions();
     }
 
-    componentDidMount = () => { 
+    componentDidMount = () => {
         this.setCardList();
-    }
+    };
 
     setCardList = () => {
-        axios.get('/api/cards/cardList')
-        .then(res => {
-            this.setState({
-                cardList: res.data
+        axios
+            .get('/api/cards/cardList')
+            .then((res) => {
+                this.setState({
+                    cardList: res.data,
+                });
+                console.log('cards OBJ-->', this.state.cardList);
+            })
+            .catch(function (error) {
+                console.log(error);
             });
-            console.log("cards OBJ-->", this.state.cardList);
-        })
-        .catch(function (error) {
-          console.log(error);
-        }) 
-    } 
+    };
 
-    setCardId = (id) => {
-        console.log(id);
-        localStorage.setItem("card_id", id);
-    } 
+    isSearched = (searchTerm) => (item) => (item.name || '').toLowerCase().includes(searchTerm.toLowerCase());
 
-    isSearched = searchTerm => item =>
-        item.type.toLowerCase().includes(searchTerm.toLowerCase());
-    
     onSearchChange = (event) => {
-        //console.log(event.target.value)
         this.setState({ searchTerm: event.target.value });
-    }
- 
-    render(){
-        //console.log("HUBS PROPS: ", this.props)
-        if(this.state.logout){
-            return <Redirect to='/login'/>
-        }
+    };
 
-        const cards = this.state.cardList ? this.state.cardList.filter(this.isSearched(this.state.searchTerm)).map((card, i) => ( 
-            <Link to="/addCard" key={card._id}>
-                <div className="hub shadowEffect" onClick={() => this.setCardId(card._id)}>
-                    <div className="adminPrimeImg"><img className="imgStyle" src={"/api/cards/image/" + card.primeImg} alt={"img"+i} /></div>
-                    <div className="adminCarMake">{card.type}</div> 
-                </div>
-            </Link>
-        )) : "" ;
-        
+    render() {
+        const cards = this.state.cardList
+            ? this.state.cardList.filter(this.isSearched(this.state.searchTerm)).map((card, i) => (
+                  <Link to={'/addCard/' + card._id} key={card._id} className={'hub ' + card.strain}>
+                      <img className="imgStyle" src={'/api/cards/image/' + card._id + '/company_image'} alt={'img' + i} />
+                      <div className="cardName">{card.name}</div>
+                  </Link>
+              ))
+            : '';
+
         return (
             <React.Fragment>
-                <NavBar deleteButton={false} />  
+                <NavBar deleteButton={false} />
                 <div className="userInfo">
                     <div className="userInfo_name">Name: {this.props.user.name}</div>
                     <div className="userInfo_email">Email:{this.props.user.email}</div>
-                </div> 
-  
-                <div className='adminCarContainer'> 
-                    <form className='searcher'>
+                </div>
+
+                <div className="adminCarContainer">
+                    <form className="searcher">
                         <input
-                            name={name} 
+                            name={name}
                             placeholder="Search . . ."
-                            type='text'
+                            type="text"
                             value={this.state.searchTerm}
                             onChange={this.onSearchChange}
                         />
                     </form>
-                     
-                    {cards ? cards : <div className="loadingContainer"><div className="loadContainer"><div className="load-shadow"></div><div className="load-box"></div></div></div>}
-                </div>
 
+                    {cards ? <div className="hubContainer">{cards}</div> : <Loader />}
+                </div>
             </React.Fragment>
         );
     }
-};
+}
 
 export default Hub;

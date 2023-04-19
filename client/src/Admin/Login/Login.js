@@ -1,80 +1,77 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import './Login.css';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import AuthFunctions from '../../AuthFunctions';
 
 class Login extends Component {
     constructor() {
         super();
-		this.state = {
+        this.state = {
             user: '',
-			email: '',
-			password: '',
+            email: '',
+            password: '',
             errors: {},
-		};
+        };
         this.Auth = new AuthFunctions();
     }
- 
+
     handleChange = (event) => {
         const target = event.target;
-        const value = target.type==='checkbox' ? target.checked : target.value;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
         });
-    }
-
-    login = () => {
-        axios.post('/api/users/login', {
-            email: this.state.email,
-            password: this.state.password
-        })
-        .then((res)=>{
-            let token = res.data.token.replace(/Bearer/g, '').trim();
-
-            this.Auth.setToken(token, ()=>{
-                this.setState({
-                    token: token
-                })
-            });
-            this.Auth.setUser(res.data.user, ()=> {
-                this.setState({
-                    user: res.data.user
-                })
-            });
-        })
     };
 
-  
+    login = (e) => {
+        e.preventDefault();
+        axios
+            .post('/api/users/login', {
+                email: this.state.email,
+                password: this.state.password,
+            })
+            .then((res) => {
+                const token = res.data.token.replace(/Bearer/g, '').trim();
+
+                this.Auth.setToken(token, () => {
+                    this.setState({
+                        token: token,
+                    });
+                });
+                this.Auth.setUser(res.data.user, () => {
+                    this.setState({ user: res.data.user });
+                });
+            });
+    };
+
     render() {
- 
-        if(this.Auth.loggedIn()){
-            if (this.state.user)
-                return <Redirect to='/Hub' user={this.state.user}/>
+        if (this.Auth.loggedIn()) {
+            if (this.state.user) return <Navigate to="/hub" user={this.state.user} replace={true} />;
         }
 
-        const { email, password } = this.state
- 
+        const { email, password } = this.state;
+
         return (
-            <React.Fragment> 
-                <div className="loginContainer">
-                    <div className="loginMiddle">
-                        <div className="loginContent">
-                            <div className="formItem">
-                                <label>Username</label>
-                                <input className="formControl" name='email' type='text' onChange={this.handleChange} value={email} />
-                            </div>
-                            <div className="formItem">
-                                <label>Password</label>
-                                <input className="formControl" name='password' type='password' onChange={this.handleChange} value={password} />
-                            </div> 
-                            <button className='loginBtn' onClick={this.login}>Login</button> 
-                        </div> 
-                    </div>  
-                </div> 
-            </React.Fragment>
+            <form className="loginContainer" onSubmit={this.login}>
+                <div className="loginMiddle">
+                    <div className="loginContent">
+                        <div className="formItem">
+                            <label>Username</label>
+                            <input className="formControl" name="email" type="text" onChange={this.handleChange} value={email} />
+                        </div>
+                        <div className="formItem">
+                            <label>Password</label>
+                            <input className="formControl" name="password" type="password" onChange={this.handleChange} value={password} />
+                        </div>
+                        <button className="loginBtn" type="submit">
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </form>
         );
     }
 }
