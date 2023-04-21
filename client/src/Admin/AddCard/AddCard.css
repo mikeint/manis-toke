@@ -67,7 +67,6 @@
 .imgContainer {
     width: 150px;
     height: 120px;
-    float: left;
     position: relative;
     margin: 5px;
     transition: 0.3s;
@@ -174,7 +173,8 @@
     width: 100% !important;
     height: 76px !important;
     margin: 0px !important;
-    float: none !important;
+    padding-left: 10px;
+    padding-top: 5px;
 }
 .card_static {
     box-shadow: 0 1px 5px 0px #2E2E33;
