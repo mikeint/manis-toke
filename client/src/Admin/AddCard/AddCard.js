@@ -27,6 +27,7 @@ const AddCard = () => {
         company_image: '',
         newCheckBtn: false,
         recommendCheckBtn: false,
+        onFire: false,
 
         isloaded: false,
     });
@@ -69,6 +70,7 @@ const AddCard = () => {
                     price: data.price || '',
                     newCheckBtn: data.newCheckBtn || false,
                     recommendCheckBtn: data.recommendCheckBtn || false,
+                    onFire: data.onFire || false,
                     isloaded: true,
                 });
             })
@@ -120,6 +122,7 @@ const AddCard = () => {
                 data.append('card_id', cardId || '');
                 data.append('newCheckBtn', state.newCheckBtn || false);
                 data.append('recommendCheckBtn', state.recommendCheckBtn || false);
+                data.append('onFire', state.onFire || false);
                 input ? data.append('company_image', input, { type: 'multipart/form-data' }) : '';
 
                 axios
@@ -349,6 +352,13 @@ const AddCard = () => {
                     />
                     <label htmlFor="recommendCheckBtn" className="newCheckLbl">
                         Recommend
+                    </label>
+                </div>
+
+                <div className="setNewContainer">
+                    <input type="checkbox" className="newCheckBtn" name="onFire" onChange={handleChange} checked={state.onFire} />
+                    <label htmlFor="onFire" className="newCheckLbl">
+                        🔥
                     </label>
                 </div>
 

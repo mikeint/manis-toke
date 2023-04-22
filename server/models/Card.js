@@ -36,6 +36,9 @@ const Cardschema = new Schema({
     recommendCheckBtn: {
         type: Boolean,
     },
+    onFire: {
+        type: Boolean,
+    },
     company_image: {
         data: Buffer,
         contentType: String,

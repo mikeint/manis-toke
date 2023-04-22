@@ -78,13 +78,19 @@
 }
 
 
+@media only screen and (max-width: 1080px) {
+    .hub {
+        width: calc(25% - 10px) !important;;
+        margin: 5px !important;
+    }
+}
 
 @media only screen and (max-width: 677px) {
     .hubContainer a {
         width: calc(25% - 20px);
     }
     .hub {
-        width: calc(25% - 10px) !important;;
+        width: calc(33.3% - 10px) !important;;
         margin: 5px !important;
     }
 }
