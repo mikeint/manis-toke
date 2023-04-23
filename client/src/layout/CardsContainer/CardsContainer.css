@@ -70,6 +70,10 @@
     background-color: #0b8341;
     box-shadow: 2px 0px 10px 5px #0b8341;
 }
+.withoutNew {
+    right: -175px;
+    top: 35px;
+}
 
 .card__newItem::after,
 .card__reccoItem::after {

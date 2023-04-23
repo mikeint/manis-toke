@@ -42,7 +42,17 @@ const CardsContainer = () => {
                                         <div className={'card__strain ' + card.strain}>{card.strain}</div>
                                         <div className={'card__strain-smtext ' + card.strain}>{card.type}</div>
                                         <div className={card.newCheckBtn ? 'card__newItem' : 'card__newItemHide'}>NEW</div>
-                                        <div className={card.recommendCheckBtn ? 'card__reccoItem' : 'card__reccoItemHide'}>STAFF PICK</div>
+                                        <div
+                                            className={
+                                                card.recommendCheckBtn
+                                                    ? card.newCheckBtn
+                                                        ? 'card__reccoItem'
+                                                        : 'card__reccoItem withoutNew'
+                                                    : 'card__reccoItemHide'
+                                            }
+                                        >
+                                            STAFF PICK
+                                        </div>
                                     </div>
                                     <div className="card__bottomContainer">
                                         <div className="card__name">{card.name}</div>
