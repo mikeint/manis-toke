@@ -21,6 +21,7 @@ const App = () => {
             <Routes>
                 <Route exact path="/hub" element={<Hub user={user} token={token} />} />
                 <Route exact path="/addCard/:cardId?" element={<AddCard />} user={user} token={token} />
+                <Route exact path="/" element={<Login />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/strain/:strain" element={<CardsContainer />} />
             </Routes>

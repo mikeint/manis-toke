@@ -66,9 +66,9 @@
     width: 435px;
     font-weight: normal;
     color: #fff;
-    border: 1px solid #b3958e;
-    background-color: #9f5e53;
-    box-shadow: 2px 0px 10px 5px #9f5e53;
+    border: 1px solid #adbab382;
+    background-color: #0b8341;
+    box-shadow: 2px 0px 10px 5px #0b8341;
 }
 
 .card__newItem::after,
@@ -177,12 +177,12 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 220px;
+    width: 70px;
     height: 60px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    animation: animName 3s linear infinite;
+    animation: animName 5s linear infinite;
     position: absolute;
     bottom: 10px;
 }

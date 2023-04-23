@@ -59,7 +59,7 @@ class Hub extends React.Component {
                                       <div
                                           className={card.recommendCheckBtn ? 'card__reccoItem card__reccoItem_hub' : 'card__reccoItemHide'}
                                       >
-                                          Manis Toke of choice
+                                          STAFF PICK
                                       </div>
                                   </div>
                                   <div className="card__bottomContainer">

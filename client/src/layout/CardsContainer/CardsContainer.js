@@ -47,7 +47,6 @@ const CardsContainer = () => {
                                     <div className="card__bottomContainer">
                                         <div className="card__name">{card.name}</div>
                                         {card.nameCross ? <div className="card__nameCross">{card.nameCross}</div> : null}
-                                        {card.onFire ? <Fire /> : null}
                                         <div className="card__values-container">
                                             <div className={'card__values-thc ' + card.strain}>
                                                 <div className="card__values-thc-name">THC</div>
@@ -71,6 +70,7 @@ const CardsContainer = () => {
                                             <div className="card__price">${card.price}</div>
                                         </div>
                                     </div>
+                                    {card.onFire ? <Fire /> : null}
                                 </section>
                             </div>
                         </div>
