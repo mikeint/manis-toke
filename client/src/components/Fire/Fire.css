@@ -3,10 +3,10 @@
     background-image: url("../../layout/images/fire.gif");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
-    height: 85px;
-    width: 170px;
+    background-position: 18px;
+    height: 225px;
+    width: 230px;
     position: absolute;
-    bottom: -30px;
+    bottom: -60px;
     opacity: 0.3;
 }

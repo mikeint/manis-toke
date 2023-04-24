@@ -39,6 +39,9 @@ const Cardschema = new Schema({
     onFire: {
         type: Boolean,
     },
+    disabled: {
+        type: Boolean,
+    },
     company_image: {
         data: Buffer,
         contentType: String,

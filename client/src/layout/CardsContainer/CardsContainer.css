@@ -174,12 +174,12 @@
 
 
 .card__price-container {
-    width: 50px;
     height: 35px;
     position: absolute;
     bottom: 0;
     right: 0;
     background: #000;
+    padding: 2px;
     color: #fff;
     font-size: 12px;
     text-align: center;

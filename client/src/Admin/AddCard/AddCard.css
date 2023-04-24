@@ -116,6 +116,9 @@
     margin: 0;
     accent-color: #80bd9b;
 }
+.disabledCheck {
+    accent-color: #dc5555;
+}
 
 .newCheckLbl {
     display: flex;
