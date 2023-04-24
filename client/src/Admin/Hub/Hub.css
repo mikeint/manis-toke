@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .hubContainer a {
     display: flex;
     flex-direction: column;
@@ -21,6 +22,7 @@
     -moz-box-shadow: 0 1px 5px 0px #2E2E33;
     box-shadow: 0 1px 5px 0px #2E2E33;
 }
+
 .hubContainer a:hover {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -46,11 +48,13 @@
     padding: 20px;
     background: #0b834182;
     color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
+
 .userInfo_name {
     float: left;
 }
+
 .userInfo_email {
     float: right;
 }
@@ -58,11 +62,13 @@
 .adminCarContainer {
     width: 100%;
 }
+
 .searcher {
     width: 90%;
     max-width: 900px;
     margin: 20px auto;
 }
+
 .searcher input {
     width: 100%;
     height: 35px;
@@ -80,7 +86,8 @@
 
 @media only screen and (max-width: 1080px) {
     .hub {
-        width: calc(25% - 10px) !important;;
+        width: calc(25% - 10px) !important;
+        ;
         margin: 5px !important;
     }
 }
@@ -89,8 +96,10 @@
     .hubContainer a {
         width: calc(25% - 20px);
     }
+
     .hub {
-        width: calc(33.3% - 10px) !important;;
+        width: calc(33.3% - 10px) !important;
+        ;
         margin: 5px !important;
     }
 }
@@ -99,23 +108,29 @@
 /* Hub card styles */
 .card_hub {
     width: 100%;
+    height: 100%;
     box-shadow: 0 1px 4px 1px #363636;
     margin: 0;
     border: 2px solid #000;
 }
+
 .card_hub:hover {
     box-shadow: none;
 }
+
 .card__topContainer_hub {
     height: 50px;
     padding: 0;
 }
+
 .card__strain_hub {
     font-size: 18px;
 }
+
 .card__strain-smtext_hub {
     font-size: 12px;
 }
+
 .card__newItem_hub {
     width: 100px;
     height: 15px;
@@ -124,6 +139,7 @@
     right: -35px;
     top: 5px;
 }
+
 .card__reccoItem_hub {
     height: 15px;
     line-height: 2;
@@ -131,21 +147,25 @@
     right: -195px;
     top: 25px;
 }
+
 .card__name_hub {
     font-size: 16px;
 }
+
 .card__price-container_hub {
     width: 30px;
     height: 35px;
     font-size: 10px;
 }
+
 .card__image_hub {
     width: 40px;
     height: 20px;
     bottom: 5px;
 }
+
 .card__image_hub img {
     width: 25px;
 }
-/* end Hub card styles */
 
+/* end Hub card styles */

@@ -11,7 +11,7 @@ import Loader from '../../components/Loader/Loader';
 const AddCard = () => {
     const { cardId } = useParams();
     const [state, setState] = useState({
-        strain: '',
+        strain: 'Indica',
         type: '',
         name: '',
         nameCross: '',
@@ -193,7 +193,7 @@ const AddCard = () => {
                     <div className="card card_static">
                         <div className="front">
                             <section>
-                                <div className={'card__topContainer ' + state.strain}>
+                                <div className={'card__topContainer card__topContainer_static ' + state.strain}>
                                     <div className="card__strain">
                                         <select
                                             name="strain"

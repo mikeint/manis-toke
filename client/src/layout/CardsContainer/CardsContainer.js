@@ -89,7 +89,7 @@ const CardsContainer = () => {
         </div>
     );
 
-    return <div className="cardsContainer">{cardList ? cards : <Loader />}</div>;
+    return cardList ? cards : <Loader />;
 };
 
 export default CardsContainer;

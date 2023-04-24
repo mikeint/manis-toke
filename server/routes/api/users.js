@@ -37,18 +37,18 @@ router.post('/login', (req, res) => {
         } else {
 
             bcrypt.compare(password, user.password).then(isMatch => {
-                if(isMatch) {
+                if (isMatch) {
                     //create jwt payload
                     const payload = {
                         id: user.id,
                         name: user.name,
                         avatar: user.avatar
                     }
-                    
+
                     //make JWT token (sign token) (payload obj, secretKey, expires obj) 
                     jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                         res.json({
-                            success: true, 
+                            success: true,
                             token: 'Bearer ' + token,
                             user: user
                         })
@@ -59,7 +59,7 @@ router.post('/login', (req, res) => {
                     return res.status(400).json(errors)
                 }
             });
- 
+
         }
     });
 });
@@ -76,7 +76,7 @@ router.post('/register', (req, res) => {
     }
 
     User.findOne({ email: req.body.email }).then(user => {
-        if (user) {  
+        if (user) {
             console.log('Email already exists');
             errors.email = 'Email already exists';
             return res.status(400).json(errors);
@@ -92,15 +92,15 @@ router.post('/register', (req, res) => {
                 avatar,
                 password: req.body.password
             });
-            
+
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     if (err) throw err;
                     newUser.password = hash;
                     newUser
-                    .save()
-                    .then(user => res.json(user))
-                    .catch(err => console.log(err));
+                        .save()
+                        .then(user => res.json(user))
+                        .catch(err => console.log(err));
                     console.log("**********USER ADDED")
                 });
             });
@@ -113,10 +113,10 @@ router.post('/register', (req, res) => {
 // @desc        return current user
 // @access      Private3
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.json({ 
+    res.json({
         id: req.user.id,
         name: req.user.name,
-        email: req.user.email 
+        email: req.user.email
     })
 });
 

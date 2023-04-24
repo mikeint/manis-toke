@@ -1,58 +1,58 @@
-
 .cardsContainer {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 33% 33% 33%;
 }
+
 .card {
-    width: 315px;
-    position: relative;
-    height: 550px;
-    border: 5px solid black;
+    width: 98%;
+    height: 96%;
+    margin: auto;
     display: flex;
     flex-direction: column;
-    margin: 10px;
     background: #fff;
     position: relative;
-    -webkit-transition: 0.6s;
     transition: 0.6s;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
     box-shadow: 0 1px 5px 0px #2E2E33;
+    border: 5px solid black;
     overflow: hidden;
 }
 
 /* TOP CONTAINER */
 .card__topContainer {
     width: 100%;
-    height: 135px;
+    height: 70px;
     background-color: #000;
     color: blueviolet;
-    padding: 10px;
+    padding: 3px;
     background-image: url("../images/logo_indica.png");
-    background-size: 140px;
+    background-size: 70px;
     background-repeat: no-repeat;
-    background-position: 150px;
+    background-position: 82px;
 }
+
 .card__strain {
-    font-size: 45px;
-}
-.card__strain-smtext{
     font-size: 25px;
+}
+
+.card__strain-smtext {
+    font-size: 15px;
 }
 
 
 .card__newItem,
 .card__reccoItem {
-    font-size: 14px;
     width: 200px;
-    height: 25px;
+    height: 15px;
     font-weight: bold;
     color: #000;
-    line-height: 25px;
+    line-height: 15px;
+    font-size: 11px;
     position: absolute;
-    right: -54px;
-    top: 35px;
+    right: -79px;
+    top: 12px;
     transform: rotate(45deg);
     text-align: center;
     overflow: hidden;
@@ -60,9 +60,10 @@
     background-color: #c5c557;
     box-shadow: 2px 0px 10px 5px #c5c557;
 }
+
 .card__reccoItem {
-    right: -145px;
-    top: 65px;
+    right: -180px;
+    top: 30px;
     width: 435px;
     font-weight: normal;
     color: #fff;
@@ -70,6 +71,7 @@
     background-color: #0b8341;
     box-shadow: 2px 0px 10px 5px #0b8341;
 }
+
 .withoutNew {
     right: -175px;
     top: 35px;
@@ -83,21 +85,24 @@
     left: -100px;
     width: 50px;
     height: 50px;
-    background-image: linear-gradient(100deg,  rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 1) 100%, rgba(255, 255, 255, 0) 0%);
+    background-image: linear-gradient(100deg, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 1) 100%, rgba(255, 255, 255, 0) 0%);
     animation-name: shiny;
     animation-duration: 4s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
 }
+
 @keyframes shiny {
     0% {
         transform: scale(0) rotate(25deg);
         opacity: 0;
     }
+
     50% {
         transform: scale(1) rotate(25deg);
         opacity: 1;
     }
+
     100% {
         transform: scale(50) rotate(25deg);
         opacity: 0;
@@ -114,94 +119,105 @@
 
 /* BOTTOM CONTAINER */
 .card__bottomContainer {}
+
 .card__name {
-    padding: 10px;
-    font-size: 26px;
+    /* padding: 10px;
+    font-size: 14px; */
+    padding: 1px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
 }
+
 .card__nameCross {
-    padding: 0px 0px 10px 0px;
+    padding: 0px 0px 3px 0px;
     text-align: center;
-    font-size: 14px;
+    font-size: 11px;
 }
+
 .card__values-container {
     display: flex;
     justify-content: center;
     color: #fff;
 }
+
 .card__values-thc {
-    width: 85px;
-    height: 85px;
+    width: 60px;
+    height: 38px;
     background-color: #000;
-    padding: 15px;
+    padding: 4px;
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 10px;
     text-align: center;
-    border: 3px solid blueviolet;
+    border: 1px solid #8a2be2;
 }
 
 .card__values-cbd {
-    width: 85px;
-    height: 85px;
+    width: 60px;
+    height: 38px;
     background-color: #000;
-    padding: 15px;
+    padding: 4px;
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 10px;
     text-align: center;
-    border: 3px solid blueviolet;
+    border: 1px solid #8a2be2;
 }
+
 .card__description {
-    margin: 10px;
-    height: 165px;
+    margin: 2px;
     overflow-y: scroll;
-    font-size: 0.8em;
+    font-size: 10px;
 }
+
 .card__description::-webkit-scrollbar {
     display: none;
 }
 
 
 .card__price-container {
-    width: 80px;
-    height: 55px;
+    width: 50px;
+    height: 35px;
     position: absolute;
     bottom: 0;
     right: 0;
     background: #000;
     color: #fff;
-    font-size: 18px;
+    font-size: 12px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
 .card__image {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 70px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     animation: animName 5s linear infinite;
     position: absolute;
-    bottom: 10px;
+    bottom: 1px;
 }
+
 .card__image img {
     width: 50px;
 }
 
 @keyframes animName {
-    0%{
+    0% {
         transform: rotateY(0deg);
     }
-    100%{
+
+    100% {
         transform: rotateY(360deg);
     }
 }
+
 /* end BOTTOM CONTAINER */
 
 
@@ -209,24 +225,47 @@
 .form-strain.Indica,
 .card__strain.Indica,
 .card__strain-smtext.Indica,
-.card__strain-smtext.Indica input {color: #8a2be2;}
+.card__strain-smtext.Indica input {
+    color: #8a2be2;
+}
+
 .form-strain.Sativa,
 .card__strain.Sativa,
 .card__strain-smtext.Sativa,
-.card__strain-smtext.Sativa input {color: #91271a;}
+.card__strain-smtext.Sativa input {
+    color: #91271a;
+}
+
 .form-strain.Hybrid,
 .card__strain.Hybrid,
 .card__strain-smtext.Hybrid,
-.card__strain-smtext.Hybrid input {color: #117b4d;}
+.card__strain-smtext.Hybrid input {
+    color: #117b4d;
+}
 
 .card__values-thc.Indica,
-.card__values-cbd.Indica {border: 3px solid #8a2be2;}
+.card__values-cbd.Indica {
+    border: 1px solid #8a2be2;
+}
+
 .card__values-thc.Sativa,
-.card__values-cbd.Sativa {border: 3px solid #91271a;}
+.card__values-cbd.Sativa {
+    border: 1px solid #91271a;
+}
+
 .card__values-thc.Hybrid,
-.card__values-cbd.Hybrid {border: 3px solid #117b4d;}
+.card__values-cbd.Hybrid {
+    border: 1px solid #117b4d;
+}
 
-.card__topContainer.Indica {background-image: url("../../layout/images/logo_indica.png");}
-.card__topContainer.Sativa {background-image: url("../../layout/images/logo_sativa.png");}
-.card__topContainer.Hybrid {background-image: url("../../layout/images/logo_hybrid.png");}
+.card__topContainer.Indica {
+    background-image: url("../../layout/images/logo_indica.png");
+}
 
+.card__topContainer.Sativa {
+    background-image: url("../../layout/images/logo_sativa.png");
+}
+
+.card__topContainer.Hybrid {
+    background-image: url("../../layout/images/logo_hybrid.png");
+}
