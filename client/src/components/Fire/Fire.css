@@ -4,10 +4,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 540px;
-    width: 100%;
+    height: 85px;
+    width: 170px;
     position: absolute;
-    top: 60px;
-    z-index: -1;
+    bottom: -30px;
     opacity: 0.3;
 }

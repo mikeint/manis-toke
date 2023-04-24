@@ -194,10 +194,9 @@
 
 .imgContainer_static {
     width: 100% !important;
-    height: 90px !important;
+    height: 100px !important;
     margin: 0px !important;
     padding-left: 10px;
-    padding-top: 5px;
 }
 
 .card_static {
@@ -205,7 +204,7 @@
     cursor: none;
     width: 315px !important;
     position: relative !important;
-    height: 550px !important;
+    height: 570px !important;
     border: 5px solid black !important;
     display: flex !important;
     flex-direction: column !important;
@@ -243,11 +242,7 @@
 
 
 .card__description_static {
-    overflow: unset !important;
-    height: 169px !important;
-    font-size: 0.8em !important;
     margin: 10px !important;
-    height: 165px !important;
 }
 
 .card__description_static textarea {
