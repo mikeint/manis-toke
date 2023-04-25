@@ -192,10 +192,6 @@
     animation: none !important;
 }
 
-.card__image_static img {
-    width: 55px;
-    height: 55px;
-}
 
 .imgContainer_static {
     width: 100% !important;
