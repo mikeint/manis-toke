@@ -215,7 +215,7 @@ const AddCard = () => {
                                             name="type"
                                             type="text"
                                             placeholder="type"
-                                            className="form-type"
+                                            className="form-type form-sub-name"
                                             onChange={handleChange}
                                             value={state.type}
                                         />
