@@ -142,6 +142,7 @@
 }
 
 .card__values-thc {
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -159,6 +160,7 @@
 }
 
 .card__values-cbd {
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
