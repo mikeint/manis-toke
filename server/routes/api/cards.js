@@ -8,11 +8,8 @@ const Card = require('../../models/Card');
 
 /* --------------------------for image uploads------------------------ */
 const path = require('path');
-const crypto = require('crypto');
 const multer = require('multer');
 const fs = require('fs');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
 const mongoURI = 'mongodb://localhost:27017/manis';
 const conn = mongoose.createConnection(mongoURI);
 mongoose.set('useFindAndModify', false);

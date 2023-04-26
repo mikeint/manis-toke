@@ -28,6 +28,7 @@ const AddCard = () => {
         newCheckBtn: false,
         recommendCheckBtn: false,
         onFire: false,
+        disabled: false,
 
         isloaded: false,
     });
@@ -218,6 +219,7 @@ const AddCard = () => {
                                             value={state.type}
                                         >
                                             <option value="Pre-roll">Pre-roll</option>
+                                            <option value="Concentrate">Concentrate</option>
                                         </select>
                                     </div>
                                 </div>

@@ -3,6 +3,19 @@
     display: flex;
     flex-wrap: wrap;
 }
+.cardsBGcolor {
+    width: 100%;
+    height: 100vh;
+}
+.cardsBGcolor-indica {
+    box-shadow: inset 0px 0px 250px 30px #8a2be28f;
+}
+.cardsBGcolor-sativa {
+    box-shadow: inset 0px 0px 250px 30px #91271a8f;
+}
+.cardsBGcolor-hybrid {
+    box-shadow: inset 0px 0px 250px 30px #117b4d8f;
+}
 
 .card {
     background: #fff;
