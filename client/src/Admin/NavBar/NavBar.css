@@ -1,51 +1,51 @@
 .navbar {
+    display: flex;
     width: 100%;
-    height: 60px;
-    background-color: #f9f9f9;
+    height: 40px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s;
-    align-items: center;
-}
-.navbar ul {
-    width: 90%;
-    float: left;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: right;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: 0.3s;
-}
-.navbar ul li {
-    height: 60px;
-    padding: 0px 15px;
-    float: right;
-    cursor: pointer;
-    line-height: 60px;
 }
 .topTitle {
-    width: 10%;
     height: 100%;
-    line-height: 60px;
-    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
     color: #2e2e2e;
-    padding: 0px 10px;
-    font-size: 27px;
+    font-size: 24px;
     font-weight: bold;
     font-family: "Lucida Console", Monaco, monospace;
 }
-.removeFullCarButton {
+.adminBtnContainer {
     width: 100%;
-    height: 100%;
-    line-height: 60px;
+    display: flex;
+    justify-content: flex-end;
+}
+.removeFullCarButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background: #d32f2e;
     color: #ffffff;
     border-radius: 3px;
-    padding: 0px 20px;
     cursor: pointer;
+    padding: 5px;
 }
-.admNavBtn {
-    color: #000;
+.logoutBtn {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+    padding: 5px;
+}
+.addCardBtn {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #3085d6;
+    color: #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 5px;
 }

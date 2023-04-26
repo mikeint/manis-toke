@@ -12,7 +12,7 @@ const AddCard = () => {
     const { cardId } = useParams();
     const [state, setState] = useState({
         strain: 'Indica',
-        type: '',
+        type: 'Pre-roll',
         name: '',
         nameCross: '',
         thc: '',
@@ -200,7 +200,6 @@ const AddCard = () => {
                                         <select
                                             name="strain"
                                             type="text"
-                                            placeholder="Strain"
                                             className={'form-strain ' + state.strain}
                                             onChange={handleChange}
                                             value={state.strain}
@@ -211,14 +210,15 @@ const AddCard = () => {
                                         </select>
                                     </div>
                                     <div className={'card__strain-smtext ' + state.strain}>
-                                        <input
+                                        <select
                                             name="type"
                                             type="text"
-                                            placeholder="type"
-                                            className="form-type form-sub-name"
+                                            className={'form-type form-sub-name ' + state.type}
                                             onChange={handleChange}
                                             value={state.type}
-                                        />
+                                        >
+                                            <option value="Pre-roll">Pre-roll</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="card__bottomContainer">

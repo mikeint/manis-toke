@@ -30,13 +30,17 @@
     background-repeat: no-repeat;
     background-position: 82px;
 }
-
+@font-face {
+    font-family: fontFam;
+    src: url(../../layout/fonts/ClarendonBTRoman.ttf);
+}
 .card__strain {
     font-size: 25px;
+    font-family: fontFam;
 }
-
 .card__strain-smtext {
     font-size: 15px;
+    font-family: fontFam;
 }
 
 
@@ -126,12 +130,14 @@
     font-size: 16px;
     font-weight: bold;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .card__nameCross {
     padding: 0px 0px 3px 0px;
     text-align: center;
     font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .card__values-container {
@@ -177,7 +183,7 @@
 .card__description {
     margin: 2px;
     overflow-y: scroll;
-    font-size: 8px;
+    font-size: 9px;
     font-family: Arial, Helvetica, sans-serif;
 }
 

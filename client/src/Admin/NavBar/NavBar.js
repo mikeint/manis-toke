@@ -42,40 +42,32 @@ class NavBar extends React.Component {
             return <Navigate to="/login" />;
         }
         return (
-            <React.Fragment>
-                <header className="navbar">
-                    <Link to="/hub">
-                        <div className="topTitle">Hub</div>
-                    </Link>
-                    <ul>
-                        <li>
-                            <div className="admNavBtn" onClick={this.handleLogout}>
-                                <a target="_blank">Log Out</a>
+            <div className="navbar">
+                <Link to="/hub" className="topTitle">
+                    Hub
+                </Link>
+                <div className="adminBtnContainer">
+                    {this.props.deleteButton ? (
+                        <div className="removeFullCarButton" onClick={this.props.deleteFullCard}>
+                            REMOVE CARD
+                        </div>
+                    ) : (
+                        ''
+                    )}
+                    {!this.props.deleteButton ? (
+                        <Link to="/addCard">
+                            <div onClick={() => this.addTempCar} className="addCardBtn">
+                                Add Card
                             </div>
-                        </li>
-                        {this.props.deleteButton ? (
-                            <li>
-                                <div className="removeFullCarButton" onClick={this.props.deleteFullCard}>
-                                    REMOVE CARD
-                                </div>
-                            </li>
-                        ) : (
-                            ''
-                        )}
-                        {!this.props.deleteButton ? (
-                            <li>
-                                <Link to="/addCard">
-                                    <div onClick={() => this.addTempCar} className="admNavBtn">
-                                        Add Card
-                                    </div>
-                                </Link>
-                            </li>
-                        ) : (
-                            ''
-                        )}
-                    </ul>
-                </header>
-            </React.Fragment>
+                        </Link>
+                    ) : (
+                        ''
+                    )}
+                    <div className="logoutBtn" onClick={this.handleLogout}>
+                        Log Out
+                    </div>
+                </div>
+            </div>
         );
     }
 }
