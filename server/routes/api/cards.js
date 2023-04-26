@@ -111,7 +111,7 @@ router.post('/addCard', upload.single('company_image'), passport.authenticate('j
     if (req.body.newCheckBtn != null) cardFields.newCheckBtn = req.body.newCheckBtn;
     if (req.body.recommendCheckBtn != null) cardFields.recommendCheckBtn = req.body.recommendCheckBtn;
     if (req.body.onFire != null) cardFields.onFire = req.body.onFire;
-    if (req.body.disabled != null) cardFields.disabled = req.body.disabled;
+    if (req.body.onReserve != null) cardFields.onReserve = req.body.onReserve;
 
     if (req.file) {
         cardFields.company_image = {

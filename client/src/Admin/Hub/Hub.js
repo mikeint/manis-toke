@@ -76,7 +76,7 @@ class Hub extends React.Component {
                                           <div className="card__grams">{card.amount}</div>
                                           <div className="card__price">${card.price}</div>
                                       </div>
-                                      {card.disabled ? <div className="card__disabled_hub">DISABLED</div> : ' '}
+                                      {card.onReserve ? <div className="card__disabled_hub">DISABLED</div> : ' '}
                                   </div>
                               </section>
                           </div>

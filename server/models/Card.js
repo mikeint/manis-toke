@@ -39,7 +39,7 @@ const Cardschema = new Schema({
     onFire: {
         type: Boolean,
     },
-    disabled: {
+    onReserve: {
         type: Boolean,
     },
     company_image: {

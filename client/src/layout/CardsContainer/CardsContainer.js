@@ -36,7 +36,7 @@ const CardsContainer = () => {
                     ?.filter((card) => card.strain?.toLowerCase() === strain.toLowerCase())
                     .sort((x, y) => y.thc - x.thc)
                     .map((card, a) => {
-                        if (!card.disabled) {
+                        if (!card.onReserve) {
                             return (
                                 <div className="card" key={a}>
                                     <div className="front">

@@ -28,7 +28,7 @@ const AddCard = () => {
         newCheckBtn: false,
         recommendCheckBtn: false,
         onFire: false,
-        disabled: false,
+        onReserve: false,
 
         isloaded: false,
     });
@@ -72,7 +72,7 @@ const AddCard = () => {
                     newCheckBtn: data.newCheckBtn || false,
                     recommendCheckBtn: data.recommendCheckBtn || false,
                     onFire: data.onFire || false,
-                    disabled: data.disabled || false,
+                    onReserve: data.onReserve || false,
                     isloaded: true,
                 });
             })
@@ -125,7 +125,7 @@ const AddCard = () => {
                 data.append('newCheckBtn', state.newCheckBtn || false);
                 data.append('recommendCheckBtn', state.recommendCheckBtn || false);
                 data.append('onFire', state.onFire || false);
-                data.append('disabled', state.disabled || false);
+                data.append('onReserve', state.onReserve || false);
                 input ? data.append('company_image', input, { type: 'multipart/form-data' }) : '';
 
                 axios
@@ -369,12 +369,12 @@ const AddCard = () => {
                 <div className="setNewContainer">
                     <input
                         type="checkbox"
-                        className="newCheckBtn disabledCheck"
-                        name="disabled"
+                        className="newCheckBtn onReserveCheck"
+                        name="onReserve"
                         onChange={handleChange}
-                        checked={state.disabled}
+                        checked={state.onReserve}
                     />
-                    <label htmlFor="disabled" className="newCheckLbl">
+                    <label htmlFor="onReserve" className="newCheckLbl">
                         Disable
                     </label>
                 </div>

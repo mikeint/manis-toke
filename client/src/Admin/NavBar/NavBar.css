@@ -37,6 +37,7 @@
     justify-content: center;
     font-weight: bold;
     padding: 5px;
+    cursor: pointer;
 }
 .addCardBtn {
     height: 100%;
