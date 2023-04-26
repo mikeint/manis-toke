@@ -153,6 +153,11 @@
     border: 1px solid #8a2be2;
 }
 
+.card__values-thc-name,
+.card__values-thc-value {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .card__values-cbd {
     display: flex;
     flex-direction: column;
@@ -191,6 +196,8 @@
     flex-direction: column;
     justify-content: center;
     z-index: 1;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .card__image {
