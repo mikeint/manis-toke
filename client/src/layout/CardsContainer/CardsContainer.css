@@ -304,3 +304,12 @@
 .card__topContainer.Hybrid {
     background-image: url("../../layout/images/logo_hybrid.png");
 }
+
+
+.card__ad {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}

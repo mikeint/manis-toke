@@ -4,6 +4,7 @@ import Loader from '../../components/Loader/Loader';
 import Fire from '../../components/Fire/Fire';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import manisGif from '../images/manisGif.gif';
 
 const CardsContainer = () => {
     const [cardList, setCardList] = useState([]);
@@ -90,6 +91,14 @@ const CardsContainer = () => {
                             );
                         }
                     })}
+
+                {strain === 'indica' ? (
+                    <div className="card">
+                        <img className="card__ad" src={manisGif} alt="ad" />
+                    </div>
+                ) : (
+                    ''
+                )}
             </div>
         </div>
     );
