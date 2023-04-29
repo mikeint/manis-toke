@@ -97,7 +97,7 @@ const CardsContainer = () => {
                     })}
 
                 {/* STATIC ADS */}
-                {strain === 'indica' ? (
+                {strain === 'sativa' ? (
                     <div className="card">
                         <img className="card__ad" src={manisGif} alt="ad" />
                     </div>
@@ -118,14 +118,14 @@ const CardsContainer = () => {
                 ) : (
                     ''
                 )}
-                {strain === 'sativa' ? (
+                {strain === 'indica' ? (
                     <div className="card">
                         <img className="card__ad" src={manisGif31} alt="ad" />
                     </div>
                 ) : (
                     ''
                 )}
-                {strain === 'sativa' ? (
+                {strain === 'indica' ? (
                     <div className="card">
                         <img className="card__ad" src={manisGif32} alt="ad" />
                     </div>
