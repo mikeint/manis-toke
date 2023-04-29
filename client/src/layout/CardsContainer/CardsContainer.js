@@ -5,6 +5,10 @@ import Fire from '../../components/Fire/Fire';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import manisGif from '../images/manisGif.gif';
+import manisGif21 from '../images/manisGif21.gif';
+import manisGif22 from '../images/manisGif22.gif';
+import manisGif31 from '../images/manisGif31.gif';
+import manisGif32 from '../images/manisGif32.gif';
 
 const CardsContainer = () => {
     const [cardList, setCardList] = useState([]);
@@ -92,6 +96,7 @@ const CardsContainer = () => {
                         }
                     })}
 
+                {/* STATIC ADS */}
                 {strain === 'indica' ? (
                     <div className="card">
                         <img className="card__ad" src={manisGif} alt="ad" />
@@ -99,6 +104,35 @@ const CardsContainer = () => {
                 ) : (
                     ''
                 )}
+                {strain === 'hybrid' ? (
+                    <div className="card">
+                        <img className="card__ad" src={manisGif21} alt="ad" />
+                    </div>
+                ) : (
+                    ''
+                )}
+                {strain === 'hybrid' ? (
+                    <div className="card">
+                        <img className="card__ad" src={manisGif22} alt="ad" />
+                    </div>
+                ) : (
+                    ''
+                )}
+                {strain === 'sativa' ? (
+                    <div className="card">
+                        <img className="card__ad" src={manisGif31} alt="ad" />
+                    </div>
+                ) : (
+                    ''
+                )}
+                {strain === 'sativa' ? (
+                    <div className="card">
+                        <img className="card__ad" src={manisGif32} alt="ad" />
+                    </div>
+                ) : (
+                    ''
+                )}
+                {/* end STATIC ADS */}
             </div>
         </div>
     );
