@@ -219,7 +219,7 @@ const AddCard = () => {
                                             value={state.type}
                                         >
                                             <option value="Pre-roll">Pre-roll</option>
-                                            <option value="Concentrate">Concentrate</option>
+                                            <option value="Flower">Flower</option>
                                         </select>
                                     </div>
                                 </div>

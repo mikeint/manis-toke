@@ -8,7 +8,7 @@ import manisGif from '../images/manisGif.gif';
 
 const CardsContainer = () => {
     const [cardList, setCardList] = useState([]);
-    const { strain } = useParams();
+    const { strain, type } = useParams();
 
     const fetchCards = () => {
         axios
@@ -34,7 +34,9 @@ const CardsContainer = () => {
         <div className={'cardsBGcolor cardsBGcolor-' + strain}>
             <div className="cardsContainer">
                 {cardList
-                    ?.filter((card) => card.strain?.toLowerCase() === strain.toLowerCase())
+                    ?.filter(
+                        (card) => card.strain?.toLowerCase() === strain.toLowerCase() && card.type?.toLowerCase() === type.toLowerCase(),
+                    )
                     .sort((x, y) => y.thc - x.thc)
                     .map((card, a) => {
                         if (!card.onReserve) {
@@ -93,7 +95,7 @@ const CardsContainer = () => {
                     })}
 
                 {/* STATIC ADS */}
-                {strain === 'indica' ? (
+                {strain === 'indica' && type === 'pre-roll' ? (
                     <div className="card">
                         <img className="card__ad" src={manisGif} alt="ad" />
                     </div>

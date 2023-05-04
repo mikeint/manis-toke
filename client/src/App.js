@@ -23,7 +23,7 @@ const App = () => {
                 <Route exact path="/addCard/:cardId?" element={<AddCard />} user={user} token={token} />
                 <Route exact path="/" element={<Login />} />
                 <Route exact path="/login" element={<Login />} />
-                <Route exact path="/strain/:strain" element={<CardsContainer />} />
+                <Route exact path="/strain/:strain/type/:type" element={<CardsContainer />} />
             </Routes>
         </BrowserRouter>
     );
