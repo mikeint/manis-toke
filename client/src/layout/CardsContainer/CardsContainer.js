@@ -37,7 +37,12 @@ const CardsContainer = () => {
                     ?.filter(
                         (card) => card.strain?.toLowerCase() === strain.toLowerCase() && card.type?.toLowerCase() === type.toLowerCase(),
                     )
-                    .sort((x, y) => y.thc - x.thc)
+                    // .sort((x, y) => parseFloat(y.thc) - parseFloat(x.thc))
+                    .sort((x, y) => {
+                        y = y.thc.split('-');
+                        x = x.thc.split('-');
+                        return parseFloat(y[y.length - 1]) - parseFloat(x[x.length - 1]);
+                    })
                     .map((card, a) => {
                         if (!card.onReserve) {
                             return (
