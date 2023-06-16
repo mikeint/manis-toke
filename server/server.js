@@ -21,6 +21,11 @@ app.use(
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
+app.use(function (req, res, next) {
+    console.log(req.method, req.url);
+    next();
+});
+
 //FOR POINTING dependencies for index.html in build
 //app.use(express.static(path.join(__dirname, 'build')))
 
@@ -48,11 +53,6 @@ app.use('/api/cards', cards);
 /* app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 }); */
-
-app.use(function (req, res, next) {
-    console.log(req.method, req.url);
-    next();
-});
 
 const port = process.env.PORT || 5000;
 
