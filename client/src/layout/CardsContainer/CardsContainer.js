@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './CardsContainer.css';
 import Loader from '../../components/Loader/Loader';
 import Fire from '../../components/Fire/Fire';
@@ -10,25 +10,31 @@ import manisGif22 from '../images/manisGif22.gif';
 
 const CardsContainer = () => {
     const [cardList, setCardList] = useState([]);
+    const isLoading = useRef(false);
     const { strain, type } = useParams();
 
     const fetchCards = () => {
-        axios
-            .get('/api/cards/cardList', { params: { onReserve: true, strain: strain.toLowerCase(), type: type.toLowerCase() } })
-            .then((res) => {
-                setCardList(res.data);
-                console.log('cards OBJ-->', res.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        if (isLoading.current == false) {
+            isLoading.current = true;
+            axios
+                .get('/api/cards/cardList', { params: { onReserve: true, strain: strain.toLowerCase(), type: type.toLowerCase() } })
+                .then((res) => {
+                    setCardList(res.data);
+                    isLoading.current = false;
+                    console.log('cards OBJ-->', res.data);
+                })
+                .catch(function (error) {
+                    isLoading.current = false;
+                    console.log(error);
+                });
+        }
     };
 
     useEffect(() => {
         fetchCards();
         const interval = setInterval(() => {
             fetchCards();
-        }, 360000);
+        }, 720000);
         return () => clearInterval(interval);
     }, []);
 
