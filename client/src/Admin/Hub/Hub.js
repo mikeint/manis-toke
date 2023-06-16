@@ -65,13 +65,6 @@ class Hub extends React.Component {
                                   <div className="card__bottomContainer">
                                       <div className="card__name card__name_hub">{card.name}</div>
                                       {card.nameCross ? <div className="card__nameCross">{card.nameCross}</div> : null}
-                                      {card.company_image ? (
-                                          <div className="card__image card__image_hub">
-                                              <img src={'/api/cards/image/' + card._id + '/company_image'} alt="company_image" />
-                                          </div>
-                                      ) : (
-                                          ''
-                                      )}
                                       <div className="card__price-container card__price-container_hub">
                                           <div className="card__grams">{card.amount}</div>
                                           <div className="card__price">${card.price}</div>

@@ -14,10 +14,10 @@ const CardsContainer = () => {
 
     const fetchCards = () => {
         axios
-            .get('/api/cards/cardList')
+            .get('/api/cards/cardList', { params: { onReserve: true, strain: strain.toLowerCase(), type: type.toLowerCase() } })
             .then((res) => {
                 setCardList(res.data);
-                console.log('cards OBJ-->', cardList);
+                console.log('cards OBJ-->', res.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -28,7 +28,7 @@ const CardsContainer = () => {
         fetchCards();
         const interval = setInterval(() => {
             fetchCards();
-        }, 60000);
+        }, 360000);
         return () => clearInterval(interval);
     }, []);
 
@@ -46,59 +46,57 @@ const CardsContainer = () => {
                         return parseFloat(y[y.length - 1]) - parseFloat(x[x.length - 1]);
                     })
                     .map((card, a) => {
-                        if (!card.onReserve) {
-                            return (
-                                <div className="card" key={a}>
-                                    <div className="front">
-                                        <section>
-                                            <div className={'card__topContainer ' + card.strain}>
-                                                <div className={'card__strain ' + card.strain}>{card.strain}</div>
-                                                <div className={'card__strain-smtext ' + card.strain}>{card.type}</div>
-                                                <div className={card.newCheckBtn ? 'card__newItem' : 'card__newItemHide'}>NEW</div>
-                                                <div
-                                                    className={
-                                                        card.recommendCheckBtn
-                                                            ? card.newCheckBtn
-                                                                ? 'card__reccoItem'
-                                                                : 'card__reccoItem withoutNew'
-                                                            : 'card__reccoItemHide'
-                                                    }
-                                                >
-                                                    STAFF PICK
+                        return (
+                            <div className="card" key={a}>
+                                <div className="front">
+                                    <section>
+                                        <div className={'card__topContainer ' + card.strain}>
+                                            <div className={'card__strain ' + card.strain}>{card.strain}</div>
+                                            <div className={'card__strain-smtext ' + card.strain}>{card.type}</div>
+                                            <div className={card.newCheckBtn ? 'card__newItem' : 'card__newItemHide'}>NEW</div>
+                                            <div
+                                                className={
+                                                    card.recommendCheckBtn
+                                                        ? card.newCheckBtn
+                                                            ? 'card__reccoItem'
+                                                            : 'card__reccoItem withoutNew'
+                                                        : 'card__reccoItemHide'
+                                                }
+                                            >
+                                                STAFF PICK
+                                            </div>
+                                        </div>
+                                        <div className="card__bottomContainer">
+                                            <div className="card__name">{card.name}</div>
+                                            {card.nameCross ? <div className="card__nameCross">{card.nameCross}</div> : null}
+                                            <div className="card__values-container">
+                                                <div className={'card__values-thc ' + card.strain}>
+                                                    <div className="card__values-thc-name">THC</div>
+                                                    <div className="card__values-thc-value">{card.thc}%</div>
+                                                </div>
+                                                <div className={'card__values-cbd ' + card.strain}>
+                                                    <div className="card__values-thc-name">CBD</div>
+                                                    <div className="card__values-thc-value">{card.cbd}%</div>
                                                 </div>
                                             </div>
-                                            <div className="card__bottomContainer">
-                                                <div className="card__name">{card.name}</div>
-                                                {card.nameCross ? <div className="card__nameCross">{card.nameCross}</div> : null}
-                                                <div className="card__values-container">
-                                                    <div className={'card__values-thc ' + card.strain}>
-                                                        <div className="card__values-thc-name">THC</div>
-                                                        <div className="card__values-thc-value">{card.thc}%</div>
-                                                    </div>
-                                                    <div className={'card__values-cbd ' + card.strain}>
-                                                        <div className="card__values-thc-name">CBD</div>
-                                                        <div className="card__values-thc-value">{card.cbd}%</div>
-                                                    </div>
+                                            <div className="card__description">{card.description}</div>
+                                            {card.company_image ? (
+                                                <div className="card__image">
+                                                    <img src={'/api/cards/image/' + card._id + '/company_image'} alt="company_image" />
                                                 </div>
-                                                <div className="card__description">{card.description}</div>
-                                                {card.company_image ? (
-                                                    <div className="card__image">
-                                                        <img src={'/api/cards/image/' + card._id + '/company_image'} alt="company_image" />
-                                                    </div>
-                                                ) : (
-                                                    ''
-                                                )}
-                                                <div className="card__price-container">
-                                                    <div className="card__grams">{card.amount}</div>
-                                                    <div className="card__price">${card.price}</div>
-                                                </div>
+                                            ) : (
+                                                ''
+                                            )}
+                                            <div className="card__price-container">
+                                                <div className="card__grams">{card.amount}</div>
+                                                <div className="card__price">${card.price}</div>
                                             </div>
-                                            {card.onFire ? <Fire /> : null}
-                                        </section>
-                                    </div>
+                                        </div>
+                                        {card.onFire ? <Fire /> : null}
+                                    </section>
                                 </div>
-                            );
-                        }
+                            </div>
+                        );
                     })}
 
                 {/* STATIC ADS */}

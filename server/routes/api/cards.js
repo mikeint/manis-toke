@@ -68,16 +68,23 @@ router.get('/getCardData', (req, res) => {
 // @access      Public
 router.get('/cardList', (req, res) => {
     const errors = {};
-
-    Card.find()
+    const { onReserve, strain, type } = req.query;
+    Card.find({
+        ...(onReserve ? { onReserve: { $ne: true } } : {}),
+        ...(strain ? { strain: { $regex: strain, $options: 'i' } } : {}),
+        ...(type ? { type: { $regex: type, $options: 'i' } } : {}),
+    })
         .then((cards) => {
             if (!cards) {
                 errors.noprofile = 'There are no cards';
                 return res.status(404).json(errors);
             }
-            res.json(cards);
+            const data = [...cards].map(({ _doc: card }) => {
+                return { ...card, company_image: card.company_image ? true : false };
+            });
+            res.json(data);
         })
-        .catch((err) => res.status(404).json({ cards: 'There are no cards' }));
+        .catch((err) => res.status(404).json({ err: 'There are no cards' }));
 });
 
 // @route       GET api /card/image
