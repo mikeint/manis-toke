@@ -29,6 +29,12 @@
     transition: .6s;
     width: calc(100% * (1/11) - 10px);
     margin: 1vh 5px;
+
+    &.card-flower {
+        height: 24.2vh;
+        width: calc(100% * (1 / 12) - 10px);
+        margin: 0.4vh 5px;
+    }
 }
 
 /* TOP CONTAINER */
@@ -311,4 +317,20 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
+}
+
+.card-spacer {
+    width: calc(100% * (2 / 12) - 10px) !important;
+    background-position: -140px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+}
+
+.card-spacer.spacer1 {
+    background-image: url("../../layout/images/bags.gif") !important;
+}
+
+.card-spacer.spacer2 {
+    background-image: url("../../layout/images/bags2.gif") !important;
 }

@@ -4,6 +4,7 @@ import Loader from '../../components/Loader/Loader';
 import Fire from '../../components/Fire/Fire';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import clsx from 'clsx';
 import manisGif from '../images/manisGif.gif';
 import manisGif21 from '../images/manisGif21.gif';
 import manisGif22 from '../images/manisGif22.gif';
@@ -14,16 +15,18 @@ const CardsContainer = () => {
     const { strain, type } = useParams();
 
     const fetchCards = () => {
-        if (isLoading.current == false) {
+        if (!isLoading.current) {
             isLoading.current = true;
             axios
-                .get('/api/cards/cardList', { params: { onReserve: true, strain: strain.toLowerCase(), type: type.toLowerCase() } })
+                .get('/api/cards/cardList', {
+                    params: { onReserve: true, strain: strain.toLowerCase(), type: type.toLowerCase() },
+                })
                 .then((res) => {
                     setCardList(res.data);
                     isLoading.current = false;
                     console.log('cards OBJ-->', res.data);
                 })
-                .catch(function (error) {
+                .catch((error) => {
                     isLoading.current = false;
                     console.log(error);
                 });
@@ -41,19 +44,45 @@ const CardsContainer = () => {
     const cards = (
         <div className={'cardsBGcolor cardsBGcolor-' + strain}>
             <div className="cardsContainer">
-                {cardList
-                    ?.filter(
+                {(() => {
+                    const filteredCards = cardList?.filter(
                         (card) => card.strain?.toLowerCase() === strain.toLowerCase() && card.type?.toLowerCase() === type.toLowerCase(),
-                    )
-                    // .sort((x, y) => parseFloat(y.thc) - parseFloat(x.thc))
-                    .sort((x, y) => {
-                        y = y.thc.split('-');
-                        x = x.thc.split('-');
-                        return parseFloat(y[y.length - 1]) - parseFloat(x[x.length - 1]);
-                    })
-                    .map((card, a) => {
+                    );
+
+                    // All cards except 14g and 28g, sort by THC descending
+                    const non14or28gCards = filteredCards
+                        .filter((card) => card.amount !== '14g' && card.amount !== '28g')
+                        .sort((x, y) => {
+                            const yTHC = y.thc.split('-');
+                            const xTHC = x.thc.split('-');
+                            return parseFloat(yTHC[yTHC.length - 1]) - parseFloat(xTHC[xTHC.length - 1]);
+                        });
+
+                    // All 14g cards sorted by price ascending
+                    const only14gCards = filteredCards
+                        .filter((card) => card.amount === '14g')
+                        .sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+
+                    // All 28g cards sorted by price ascending
+                    const only28gCards = filteredCards
+                        .filter((card) => card.amount === '28g')
+                        .sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+
+                    // Final cards with spacers between groups in correct order
+                    const isFlower = type?.toLowerCase() === 'flower';
+                    const cardsWithSpacer = [
+                        ...non14or28gCards,
+                        isFlower ? { isSpacer: true, id: 'spacer1' } : null,
+                        ...only14gCards,
+                        isFlower ? { isSpacer: true, id: 'spacer2' } : null,
+                        ...only28gCards,
+                    ].filter(Boolean);
+
+                    return cardsWithSpacer.map((card, index) => {
+                        if (card.isSpacer) return <div key={card.id} className={`card card-flower card-spacer ${card.id}`} />;
+
                         return (
-                            <div className="card" key={a}>
+                            <div className={clsx('card', { 'card-flower': card.type?.toLowerCase() === 'flower' })} key={card._id || index}>
                                 <div className="front">
                                     <section>
                                         <div className={'card__topContainer ' + card.strain}>
@@ -103,7 +132,8 @@ const CardsContainer = () => {
                                 </div>
                             </div>
                         );
-                    })}
+                    });
+                })()}
 
                 {/* STATIC ADS */}
                 {strain === 'indica' && type === 'pre-roll' ? (
@@ -113,14 +143,14 @@ const CardsContainer = () => {
                 ) : (
                     ''
                 )}
-                {strain === 'hybrid' ? (
+                {strain === 'hybrid' && type === 'pre-roll' ? (
                     <div className="card">
                         <img className="card__ad" src={manisGif21} alt="ad" />
                     </div>
                 ) : (
                     ''
                 )}
-                {strain === 'hybrid' ? (
+                {strain === 'hybrid' && type === 'pre-roll' ? (
                     <div className="card">
                         <img className="card__ad" src={manisGif22} alt="ad" />
                     </div>
