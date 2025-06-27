@@ -310,7 +310,6 @@
     background-image: url("../../layout/images/logo_hybrid.png");
 }
 
-
 .card__ad {
     width: 100%;
     display: flex;
@@ -327,14 +326,8 @@
     background-position: center;
     background-color: black;
 }
-
-.card-spacer.spacer1 {
-    background-image: url("../../layout/images/bags14.gif") !important;
-}
-
-.card-spacer.spacer2 {
-    background-image: url("../../layout/images/bags28.gif") !important;
-}
+.card-spacer.spacer1 {background-image: url("../../layout/images/bags14.gif") !important;}
+.card-spacer.spacer2 {background-image: url("../../layout/images/bags28.gif") !important;}
 
 /* ARROW ANIMATION */
 .arrow {
@@ -357,7 +350,6 @@
     transform: rotate(-45deg);
     margin-bottom: 40px;
 }
-
 @keyframes animateRight {
     0% {
         opacity: 0;
