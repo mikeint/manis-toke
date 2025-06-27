@@ -79,7 +79,22 @@ const CardsContainer = () => {
                     ].filter(Boolean);
 
                     return cardsWithSpacer.map((card, index) => {
-                        if (card.isSpacer) return <div key={card.id} className={`card card-flower card-spacer ${card.id}`} />;
+                        if (card.isSpacer)
+                            return (
+                                <div key={card.id} className={`card card-flower card-spacer ${card.id}`}>
+                                    <div className="arrow">
+                                        <div className="arrow__wrapper">
+                                            <span></span>
+                                        </div>
+                                        <div className="arrow__wrapper">
+                                            <span></span>
+                                        </div>
+                                        <div className="arrow__wrapper">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
 
                         return (
                             <div className={clsx('card', { 'card-flower': card.type?.toLowerCase() === 'flower' })} key={card._id || index}>

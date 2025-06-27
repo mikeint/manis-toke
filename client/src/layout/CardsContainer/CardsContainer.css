@@ -321,16 +321,55 @@
 
 .card-spacer {
     width: calc(100% * (2 / 12) - 10px) !important;
-    background-position: -140px 0;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-color: transparent;
+    background-position: center;
+    background-color: black;
 }
 
 .card-spacer.spacer1 {
-    background-image: url("../../layout/images/bags.gif") !important;
+    background-image: url("../../layout/images/bags14.gif") !important;
 }
 
 .card-spacer.spacer2 {
-    background-image: url("../../layout/images/bags2.gif") !important;
+    background-image: url("../../layout/images/bags28.gif") !important;
 }
+
+/* ARROW ANIMATION */
+.arrow {
+    position: absolute;
+    top: 70px;
+    right: 60px;
+}
+.arrow__wrapper {
+    animation: animateRight 3s infinite;
+    margin: -10px;
+}
+.arrow__wrapper:nth-child(2) { animation-delay: 0.4s;}
+.arrow__wrapper:nth-child(3) { animation-delay: 1s;}
+.arrow__wrapper span {
+    display: block;
+    width: 2vw;
+    height: 2vw;
+    border-bottom: 5px solid white;
+    border-right: 5px solid white;
+    transform: rotate(-45deg);
+    margin-bottom: 40px;
+}
+
+@keyframes animateRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-40px); /* purely horizontal */
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(40px); /* purely horizontal */
+    }
+}
+
+/* END ARROW ANIMATION */
