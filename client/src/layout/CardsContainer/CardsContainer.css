@@ -31,9 +31,35 @@
     margin: 1vh 5px;
 
     &.card-flower {
-        height: 24.2vh;
-        width: calc(100% * (1 / 12) - 10px);
-        margin: 0.4vh 5px;
+        height: 24.35vh;
+        width: calc(100% * (1 / 14) - 6px);
+        margin: 0.3vh 3px;
+        border:2px solid #000;
+
+
+        .card__topContainer {
+            padding: 0;
+            height: 40px;
+        }
+        .card__strain-smtext {
+            display: none;
+        }
+        .card__description {
+        }
+        .card__name {
+            font-size: 14px;
+        }
+        .card__nameCross {
+            font-size: 10px;
+        }
+        .card__values-thc-name, .card__values-thc-value {
+            font-size: 11px;
+        }
+        .card__price-container {
+            height: 30px;
+            font-size: 11px;
+            padding: 2px 0px 0px 2px;
+        }
     }
 }
 
@@ -319,7 +345,7 @@
 }
 
 .card-spacer {
-    width: calc(100% * (2 / 12) - 10px) !important;
+    width:calc(100% * (2 / 14) - 6px) !important;
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
@@ -332,7 +358,7 @@
 /* ARROW ANIMATION */
 .arrow {
     position: absolute;
-    top: 70px;
+    top: 50px;
     right: 60px;
 }
 .arrow__wrapper {
