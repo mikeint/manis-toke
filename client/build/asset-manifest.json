@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.5950fcac.css",
+    "main.css": "/static/css/main.c97db50c.css",
     "main.js": "/static/js/main.57f939c0.js",
     "static/media/bags14.gif": "/static/media/bags14.1736db2904b600c37c34.gif",
     "static/media/bags28.gif": "/static/media/bags28.52e572352c501e27876b.gif",
@@ -13,11 +13,11 @@
     "static/media/logo_sativa.png": "/static/media/logo_sativa.8eceea8a7ef005bd5965.png",
     "static/media/ClarendonBTRoman.ttf": "/static/media/ClarendonBTRoman.ea332e8424dbc5c4e775.ttf",
     "index.html": "/index.html",
-    "main.5950fcac.css.map": "/static/css/main.5950fcac.css.map",
+    "main.c97db50c.css.map": "/static/css/main.c97db50c.css.map",
     "main.57f939c0.js.map": "/static/js/main.57f939c0.js.map"
   },
   "entrypoints": [
-    "static/css/main.5950fcac.css",
+    "static/css/main.c97db50c.css",
     "static/js/main.57f939c0.js"
   ]
 }

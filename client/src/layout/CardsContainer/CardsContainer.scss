@@ -32,33 +32,33 @@
 }
 
 .card.card-flower {
-    height: 24.35vh;
-    width: calc(100% * (1 / 14) - 6px);
-    margin: 0.3vh 3px;
-    border:2px solid #000;
+    height: 24.35vh !important;
+    width: calc(100% * (1 / 14) - 6px) !important;
+    margin: 0.3vh 3px !important;
+    border:2px solid #000 !important;
 
     .card__topContainer {
-        padding: 0;
-        height: 40px;
+        padding: 0 !important;
+        height: 40px !important;
     }
     .card__strain-smtext {
-        display: none;
+        display: none !important;
     }
     .card__description {
     }
     .card__name {
-        font-size: 14px;
+        font-size: 14px !important;
     }
     .card__nameCross {
-        font-size: 10px;
+        font-size: 10px !important;
     }
     .card__values-thc-name, .card__values-thc-value {
-        font-size: 11px;
+        font-size: 11px !important;
     }
     .card__price-container {
-        height: 30px;
-        font-size: 11px;
-        padding: 2px 0px 0px 2px;
+        height: 30px !important;
+        font-size: 11px !important;
+        padding: 2px 0px 0px 2px !important;
     }
 }
 

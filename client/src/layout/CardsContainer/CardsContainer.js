@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import './CardsContainer.css';
+import './CardsContainer.scss';
 import Loader from '../../components/Loader/Loader';
 import Fire from '../../components/Fire/Fire';
 import axios from 'axios';
