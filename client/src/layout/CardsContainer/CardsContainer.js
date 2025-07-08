@@ -8,6 +8,8 @@ import clsx from 'clsx';
 import manisGif from '../images/manisGif.gif';
 import manisGif21 from '../images/manisGif21.gif';
 import manisGif22 from '../images/manisGif22.gif';
+import manis from '../images/manis.png';
+import logo from '../images/logo.png';
 
 const CardsContainer = () => {
     const [cardList, setCardList] = useState([]);
@@ -24,7 +26,7 @@ const CardsContainer = () => {
                 .then((res) => {
                     setCardList(res.data);
                     isLoading.current = false;
-                    console.log('cards OBJ-->', res.data);
+                    // console.log('cards OBJ-->', res.data);
                 })
                 .catch((error) => {
                     isLoading.current = false;
@@ -168,6 +170,17 @@ const CardsContainer = () => {
                 {strain === 'hybrid' && type === 'pre-roll' ? (
                     <div className="card">
                         <img className="card__ad" src={manisGif22} alt="ad" />
+                    </div>
+                ) : (
+                    ''
+                )}
+
+                {type === 'flower' ? (
+                    <div className="card card-flower">
+                        <span className="card__ad-wrap">
+                            <img className="card__ad card__ad_s card__ad__img" src={logo} alt="ad" />
+                        </span>
+                        <img className="card__ad_st" src={manis} alt="ad" />
                     </div>
                 ) : (
                     ''

@@ -17,9 +17,8 @@ const validateLoginInput = require('../../validation/login');
 // @desc        Login user route
 // @access      Public
 router.post('/login', (req, res) => {
-    console.log(req.body.email, req.body.password)
     const { errors, isValid } = validateLoginInput(req.body);
-    // Check Validation 
+    // Check Validation
     if (!isValid) {
         return res.status(400).json(errors);
     }
@@ -45,7 +44,7 @@ router.post('/login', (req, res) => {
                         avatar: user.avatar
                     }
 
-                    //make JWT token (sign token) (payload obj, secretKey, expires obj) 
+                    //make JWT token (sign token) (payload obj, secretKey, expires obj)
                     jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                         res.json({
                             success: true,
@@ -70,7 +69,7 @@ router.post('/login', (req, res) => {
 // @access      Public
 router.post('/register', (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
-    // Check Validation 
+    // Check Validation
     if (!isValid) {
         return res.status(400).json(errors);
     }

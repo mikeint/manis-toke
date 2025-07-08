@@ -342,6 +342,44 @@
     justify-content: center;
     height: 100%;
 }
+.card__ad-wrap {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    background: black;
+}
+.card__ad_s {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+    perspective: 1000px;
+    z-index: 999;
+}
+.card__ad_st {
+    width: 100%;
+    display: flex;
+    padding: 7px;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+}
+.card__ad__img {
+    width: 100%;
+    max-width: 100px;
+    animation: flip 3s linear infinite;
+    transform-style: preserve-3d;
+}
+@keyframes flip {
+    0%   { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+
 
 .card-spacer {
     width:calc(100% * (2 / 14) - 6px) !important;
