@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.a50dfb4d.css",
+    "main.css": "/static/css/main.b787f4ec.css",
     "main.js": "/static/js/main.5c23107d.js",
-    "static/media/bags14.gif": "/static/media/bags14.1736db2904b600c37c34.gif",
-    "static/media/bags28.gif": "/static/media/bags28.52e572352c501e27876b.gif",
     "static/media/fire.gif": "/static/media/fire.19dfa539d496ca864f08.gif",
     "static/media/manisGif.gif": "/static/media/manisGif.9532ba5c346b4c46e82a.gif",
     "static/media/manisGif22.gif": "/static/media/manisGif22.07fbe6a2c55dec009583.gif",
     "static/media/manisGif21.gif": "/static/media/manisGif21.d93ae854cd2302520c23.gif",
     "static/media/logo.png": "/static/media/logo.ea57e59811ac688c0033.png",
     "static/media/logo_indica.png": "/static/media/logo_indica.e76d31918a784f24d75d.png",
+    "static/media/bags14.png": "/static/media/bags14.5c465ce68b6c25dc7a24.png",
+    "static/media/bags28.png": "/static/media/bags28.845ef112951cf08786f1.png",
     "static/media/logo_hybrid.png": "/static/media/logo_hybrid.8e4f8987e9be55226871.png",
     "static/media/logo_sativa.png": "/static/media/logo_sativa.8eceea8a7ef005bd5965.png",
     "static/media/ClarendonBTRoman.ttf": "/static/media/ClarendonBTRoman.ea332e8424dbc5c4e775.ttf",
     "static/media/manis.png": "/static/media/manis.468873ff45684fbb806e.png",
     "index.html": "/index.html",
-    "main.a50dfb4d.css.map": "/static/css/main.a50dfb4d.css.map",
+    "main.b787f4ec.css.map": "/static/css/main.b787f4ec.css.map",
     "main.5c23107d.js.map": "/static/js/main.5c23107d.js.map"
   },
   "entrypoints": [
-    "static/css/main.a50dfb4d.css",
+    "static/css/main.b787f4ec.css",
     "static/js/main.5c23107d.js"
   ]
 }
