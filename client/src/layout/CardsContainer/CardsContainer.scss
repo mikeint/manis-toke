@@ -19,53 +19,67 @@
 
 .card {
     background: #fff;
-    border: 3px solid #000;
+    border: 2px solid #000;
     box-shadow: 0 1px 5px 0 #2e2e33;
     display: flex;
     flex-direction: column;
-    height: 31.3vh;
+    height: 24.64vh;
     overflow: hidden;
     position: relative;
     transition: .6s;
-    width: calc(100% * (1/11) - 10px);
-    margin: 1vh 5px;
+    width: calc(100% * (1/12) - 6px);
+    margin: 2px 3px;
 }
 
 .card.card-flower {
     height: 24.35vh !important;
     width: calc(100% * (1 / 14) - 6px) !important;
     margin: 0.3vh 3px !important;
-    border:2px solid #000 !important;
 
     .card__topContainer {
         padding: 0 !important;
         height: 40px !important;
+    }
+    .card__strain {
+        font-size: 25px !important;
     }
     .card__strain-smtext {
         display: none !important;
     }
     .card__description {
     }
-    .card__name {
-        font-size: 14px !important;
-    }
     .card__nameCross {
         font-size: 10px !important;
     }
-    .card__values-thc-name, .card__values-thc-value {
+    .card__values-thc-name,
+    .card__values-thc-value {
         font-size: 11px !important;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
     }
     .card__price-container {
         height: 30px !important;
         font-size: 11px !important;
         padding: 2px 0px 0px 2px !important;
     }
+    .card__grams {
+        font-size: unset;
+    }
+    .card__image img {
+        width: 50px !important;
+    }
+    .card__values-thc {
+        min-height: unset !important;
+        min-width: unset !important;
+        font-size: 10px !important;
+    }
 }
 
 /* TOP CONTAINER */
 .card__topContainer {
     width: 100%;
-    height: 70px;
+    height: 35px;
     background-color: #000;
     color: blueviolet;
     padding: 3px;
@@ -79,12 +93,13 @@
     src: url(../../layout/fonts/ClarendonBTRoman.ttf);
 }
 .card__strain {
-    font-size: 25px;
+    font-size: 23px;
     font-family: fontFam;
 }
 .card__strain-smtext {
     font-size: 15px;
     font-family: fontFam;
+    display: none;
 }
 
 
@@ -171,7 +186,7 @@
     /* padding: 10px;
     font-size: 14px; */
     padding: 1px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -193,13 +208,14 @@
 
 .card__values-thc {
     width: 40%;
+    min-height: 50px;
+    min-width: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: #000;
-    padding: 6px;
     margin-right: 5px;
-    font-size: 10px;
+    font-size: 13px;
     text-align: center;
     border: 1px solid #8a2be2;
 }
@@ -207,8 +223,8 @@
 .card__values-thc-name,
 .card__values-thc-value {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .card__values-cbd {
@@ -243,14 +259,17 @@
     background: #000;
     padding: 2px;
     color: #fff;
-    font-size: 12px;
+    font-size: 13px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     z-index: 1;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.card__grams {
+    font-size: 12px;
 }
 
 .card__image {
@@ -270,7 +289,7 @@
 }
 
 .card__image img {
-    width: 50px;
+    width: 35px;
 }
 
 @keyframes animName {
