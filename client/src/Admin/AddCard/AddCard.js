@@ -210,7 +210,7 @@ const AddCard = () => {
                                             <option value="Hybrid">Hybrid</option>
                                         </select>
                                     </div>
-                                    <div className={'card__strain-smtext ' + state.strain}>
+                                    <div className={'card__strain-smtext_admin ' + state.strain}>
                                         <select
                                             name="type"
                                             type="text"
