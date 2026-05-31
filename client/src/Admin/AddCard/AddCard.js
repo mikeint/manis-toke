@@ -13,10 +13,13 @@ const AddCard = () => {
     const [state, setState] = useState({
         strain: 'Indica',
         type: 'Pre-roll',
+        edibleType: '',
         name: '',
         nameCross: '',
         thc: '',
         cbd: '',
+        cbg: '',
+        cbn: '',
         description: '',
         amount: '',
         price: '',
@@ -62,10 +65,13 @@ const AddCard = () => {
                     ...state,
                     strain: data.strain || '',
                     type: data.type || '',
+                    edibleType: data.edibleType || '',
                     name: data.name || '',
                     nameCross: data.nameCross || '',
                     thc: data.thc || '',
                     cbd: data.cbd || '',
+                    cbg: data.cbg || '',
+                    cbn: data.cbn || '',
                     description: data.description || '',
                     amount: data.amount || '',
                     price: data.price || '',
@@ -96,6 +102,28 @@ const AddCard = () => {
 
     /* INPUT TEXT */
     const addCard = () => {
+        const requiredFields = [
+            { key: 'strain', label: 'Strain' },
+            { key: 'type', label: 'Type' },
+            { key: 'name', label: 'Name' },
+            { key: 'thc', label: 'THC' },
+            { key: 'amount', label: 'Amount' },
+            { key: 'price', label: 'Price' },
+        ];
+
+        const missing = requiredFields.filter((field) => !String(state[field.key]).trim());
+
+        if (missing.length) {
+            swal({
+                title: 'Missing required fields',
+                text: 'Please fill out: ' + missing.map((field) => field.label).join(', '),
+                type: 'warning',
+                animation: true,
+                customClass: 'animated tada',
+            });
+            return;
+        }
+
         swal({
             title: 'Are you sure?',
             text: 'You can edit this card later',
@@ -114,10 +142,13 @@ const AddCard = () => {
 
                 data.append('strain', state.strain);
                 data.append('type', state.type);
+                data.append('edibleType', state.type === 'Edibles' ? state.edibleType : '');
                 data.append('name', state.name);
                 data.append('nameCross', state.nameCross);
                 data.append('thc', state.thc);
                 data.append('cbd', state.cbd);
+                data.append('cbg', state.cbg);
+                data.append('cbn', state.cbn);
                 data.append('description', state.description);
                 data.append('amount', state.amount);
                 data.append('price', state.price);
@@ -220,6 +251,8 @@ const AddCard = () => {
                                         >
                                             <option value="Pre-roll">Pre-roll</option>
                                             <option value="Flower">Flower</option>
+                                            <option value="Vapes">Vapes</option>
+                                            <option value="Edibles">Edibles</option>
                                         </select>
                                     </div>
                                 </div>
@@ -234,16 +267,38 @@ const AddCard = () => {
                                             value={state.name}
                                         />
                                     </div>
-                                    <div className="card__name card__name_static">
-                                        <input
-                                            name="nameCross"
-                                            type="text"
-                                            placeholder="Cross Name"
-                                            className="form-name"
-                                            onChange={handleChange}
-                                            value={state.nameCross}
-                                        />
-                                    </div>
+                                    {state.type !== 'Edibles' ? (
+                                        <div className="card__name card__name_static">
+                                            <input
+                                                name="nameCross"
+                                                type="text"
+                                                placeholder="Cross Name"
+                                                className="form-name"
+                                                onChange={handleChange}
+                                                value={state.nameCross}
+                                            />
+                                        </div>
+                                    ) : null}
+                                    {state.type === 'Edibles' ? (
+                                        <div className="card__edibleType card__edibleType_static">
+                                            <button
+                                                type="button"
+                                                className={'edibleTypeBtn' + (state.edibleType === 'gummie' ? ' edibleTypeBtn_active' : '')}
+                                                onClick={() => setState({ ...state, edibleType: 'gummie' })}
+                                            >
+                                                Gummie
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className={
+                                                    'edibleTypeBtn' + (state.edibleType === 'chocolate' ? ' edibleTypeBtn_active' : '')
+                                                }
+                                                onClick={() => setState({ ...state, edibleType: 'chocolate' })}
+                                            >
+                                                Chocolate
+                                            </button>
+                                        </div>
+                                    ) : null}
                                     <div className="card__values-container">
                                         <div className={'card__values-thc card__values-thc_static ' + state.strain}>
                                             <div className="card__values-thc-name">THC</div>
@@ -269,6 +324,34 @@ const AddCard = () => {
                                                     className="form-thc"
                                                     onChange={handleChange}
                                                     value={state.cbd}
+                                                />
+                                                %
+                                            </div>
+                                        </div>
+                                        <div className={'card__values-cbd card__values-thc_static ' + state.strain}>
+                                            <div className="card__values-thc-name">CBG</div>
+                                            <div className="card__values-thc-value">
+                                                <input
+                                                    name="cbg"
+                                                    type="text"
+                                                    placeholder="cbg"
+                                                    className="form-thc"
+                                                    onChange={handleChange}
+                                                    value={state.cbg}
+                                                />
+                                                %
+                                            </div>
+                                        </div>
+                                        <div className={'card__values-cbd card__values-thc_static ' + state.strain}>
+                                            <div className="card__values-thc-name">CBN</div>
+                                            <div className="card__values-thc-value">
+                                                <input
+                                                    name="cbn"
+                                                    type="text"
+                                                    placeholder="cbn"
+                                                    className="form-thc"
+                                                    onChange={handleChange}
+                                                    value={state.cbn}
                                                 />
                                                 %
                                             </div>
@@ -299,7 +382,9 @@ const AddCard = () => {
                                                     src={
                                                         state.company_image_new
                                                             ? state.company_image_new
-                                                            : '/api/cards/image/' + cardId + '/company_image'
+                                                            : cardId
+                                                            ? '/api/cards/image/' + cardId + '/company_image'
+                                                            : undefined
                                                     }
                                                 />
                                             </div>

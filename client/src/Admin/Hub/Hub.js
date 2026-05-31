@@ -14,9 +14,21 @@ class Hub extends React.Component {
             user: '',
             cardList: '',
             searchTerm: '',
+            activeTab: 'Flower',
         };
         this.Auth = new AuthFunctions();
     }
+
+    tabs = [
+        { label: 'Flower', type: 'Flower' },
+        { label: 'Pre-Rolls', type: 'Pre-roll' },
+        { label: 'Edibles', type: 'Edibles' },
+        { label: 'Vapes', type: 'Vapes' },
+    ];
+
+    onTabChange = (type) => {
+        this.setState({ activeTab: type });
+    };
 
     componentDidMount = () => {
         this.setCardList();
@@ -44,7 +56,10 @@ class Hub extends React.Component {
 
     render() {
         const cards = this.state.cardList
-            ? this.state.cardList.filter(this.isSearched(this.state.searchTerm)).map((card, i) => (
+            ? this.state.cardList
+                  .filter((card) => card.type === this.state.activeTab)
+                  .filter(this.isSearched(this.state.searchTerm))
+                  .map((card, i) => (
                   <Link to={'/addCard/' + card._id} key={card._id} className="hub">
                       {/* <img className="imgStyle" src={'/api/cards/image/' + card._id + '/company_image'} alt={'img' + i} />
                 <div className="cardName">{card.name}</div> */}
@@ -97,7 +112,20 @@ class Hub extends React.Component {
                         />
                     </form>
 
-                    {cards ? <div className="hubContainer">{cards}</div> : <Loader />}
+                    <div className="hubTabs">
+                        {this.tabs.map((tab) => (
+                            <button
+                                key={tab.type}
+                                type="button"
+                                className={'hubTab' + (this.state.activeTab === tab.type ? ' hubTab_active' : '')}
+                                onClick={() => this.onTabChange(tab.type)}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    {this.state.cardList ? <div className="hubContainer">{cards}</div> : <Loader />}
                 </div>
             </React.Fragment>
         );

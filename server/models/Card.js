@@ -9,6 +9,9 @@ const Cardschema = new Schema({
     type: {
         type: String,
     },
+    edibleType: {
+        type: String,
+    },
     name: {
         type: String,
     },
@@ -19,6 +22,12 @@ const Cardschema = new Schema({
         type: String,
     },
     cbd: {
+        type: String,
+    },
+    cbg: {
+        type: String,
+    },
+    cbn: {
         type: String,
     },
     description: {

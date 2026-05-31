@@ -10,9 +10,6 @@ const Card = require('../../models/Card');
 const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
-const mongoURI = 'mongodb://localhost:27017/manis';
-const conn = mongoose.createConnection(mongoURI);
-mongoose.set('useFindAndModify', false);
 
 // Create storage engine
 var storage = multer.diskStorage({
@@ -34,6 +31,10 @@ router.post('/deleteFullCard', (req, res) => {
     const errors = {};
 
     // remove the card info
+    if (!mongoose.Types.ObjectId.isValid(req.body.card_id)) {
+        errors.noprofile = 'There was no card with this id';
+        return res.status(404).json(errors);
+    }
     Card.findOneAndDelete({ _id: req.body.card_id })
         .then((cards) => {
             if (!cards) {
@@ -52,6 +53,9 @@ router.get('/getCardData', (req, res) => {
     const errors = {};
 
     //console.log(req.query)
+    if (!mongoose.Types.ObjectId.isValid(req.query.card_id)) {
+        return res.status(404).json({ cards: 'There are no cards' });
+    }
     Card.find({ _id: req.query.card_id })
         .then((cards) => {
             if (!cards) {
@@ -93,6 +97,10 @@ router.get('/cardList', (req, res) => {
 router.get('/image/:cardid/:field', (req, res) => {
     const { cardid, field } = req.params;
 
+    if (!mongoose.Types.ObjectId.isValid(cardid)) {
+        return res.status(404).json({ cards: 'There is no card image' });
+    }
+
     Card.findOne({ _id: cardid })
         .then((card) => res.header('contentType', card[field].contentType).send(card[field].data))
         .catch((err) => {
@@ -105,13 +113,23 @@ router.get('/image/:cardid/:field', (req, res) => {
 // @desc        Create || Edit Card
 // @access      Private
 router.post('/addCard', upload.single('company_image'), passport.authenticate('jwt', { session: false }), (req, res) => {
+    const requiredFields = ['strain', 'type', 'name', 'thc', 'amount', 'price'];
+    const missing = requiredFields.filter((field) => !req.body[field] || !String(req.body[field]).trim());
+
+    if (missing.length) {
+        return res.status(400).json('Missing required fields: ' + missing.join(', '));
+    }
+
     const cardFields = {};
     if (req.body.strain) cardFields.strain = req.body.strain;
     if (req.body.type) cardFields.type = req.body.type;
+    if (req.body.edibleType != null) cardFields.edibleType = req.body.edibleType;
     if (req.body.name) cardFields.name = req.body.name;
     if (req.body.nameCross) cardFields.nameCross = req.body.nameCross;
     if (req.body.thc) cardFields.thc = req.body.thc;
     if (req.body.cbd) cardFields.cbd = req.body.cbd;
+    if (req.body.cbg != null) cardFields.cbg = req.body.cbg;
+    if (req.body.cbn != null) cardFields.cbn = req.body.cbn;
     if (req.body.description) cardFields.description = req.body.description;
     if (req.body.amount) cardFields.amount = req.body.amount;
     if (req.body.price) cardFields.price = req.body.price;
@@ -129,9 +147,11 @@ router.post('/addCard', upload.single('company_image'), passport.authenticate('j
 
     // Save Card, and return the response (Card)
     // If the id exists
-    if (req.body.card_id) {
+    if (req.body.card_id && mongoose.Types.ObjectId.isValid(req.body.card_id)) {
         //console.log("already created: ",cardFields)
-        Card.findOneAndUpdate({ _id: req.body.card_id }, { $set: cardFields }).then((Card) => res.json(Card));
+        Card.findOneAndUpdate({ _id: req.body.card_id }, { $set: cardFields }, { new: true })
+            .then((Card) => res.json(Card))
+            .catch((err) => res.status(404).json({ card: 'Could not update card' }));
         // Else make new record
     } else {
         //console.log("NEW: ", cardFields);

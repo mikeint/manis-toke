@@ -160,8 +160,8 @@
 }
 
 .form-thc {
-    width: 50px;
-    height: 30px;
+    width: 55px;
+    height: 40px;
     font-size: 20px;
     text-align: center;
 }
@@ -278,6 +278,37 @@
 
 .card__price-container_static .form-price {
     width: 70px;
+}
+
+.card__edibleType_static {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 5px 0;
+}
+
+.edibleTypeBtn {
+    flex: 1;
+    max-width: 120px;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.edibleTypeBtn:hover {
+    background: #0b834182;
+    color: #fff;
+}
+
+.edibleTypeBtn_active {
+    background: #0b8341;
+    color: #fff;
 }
 
 

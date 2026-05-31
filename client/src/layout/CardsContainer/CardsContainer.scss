@@ -203,9 +203,20 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.card__edibleType {
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #0b8341;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .card__values-container {
     display: flex;
     justify-content: center;
+    align-content: center;
+    gap: 2px;
     color: #fff;
     width: 100%;
 }
@@ -222,6 +233,13 @@
     font-size: 13px;
     text-align: center;
     border: 1px solid #8a2be2;
+}
+
+/* Count-based layout: gap is handled by the container, so reset margin
+   and let flex-basis control how many sit per row. */
+.card__values-container .card__values-thc {
+    width: auto;
+    margin-right: 0;
 }
 
 .card__values-thc-name,
@@ -414,6 +432,43 @@
 }
 .card-spacer.spacer1 {background-image: url("../../layout/images/bags14.png") !important;}
 .card-spacer.spacer2 {background-image: url("../../layout/images/bags28.png") !important;}
+/* Edible spacers: faded + angled image behind the label/arrows */
+.card-spacer.spacerGummies,
+.card-spacer.spacerChocolate {
+    background-image: none !important;
+    overflow: hidden;
+}
+
+.card-spacer.spacerGummies::before,
+.card-spacer.spacerChocolate::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 130px;
+    background-position: center;
+    opacity: 0.35;
+    transform: rotate(-12deg);
+    z-index: 0;
+}
+
+.card-spacer.spacerGummies::before {background-image: url("../../layout/images/gummie.png");}
+.card-spacer.spacerChocolate::before {background-image: url("../../layout/images/chocolate.png");}
+
+.card-spacer__label {
+    position: relative;
+    z-index: 1;
+    padding-top: 15px;
+    color: #fff;
+    text-align: center;
+    font-size: 1.2vw;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 /* ARROW ANIMATION */
 .arrow {
