@@ -15,6 +15,7 @@ class Hub extends React.Component {
             cardList: '',
             searchTerm: '',
             activeTab: 'Flower',
+            activeStrain: '',
         };
         this.Auth = new AuthFunctions();
     }
@@ -26,8 +27,15 @@ class Hub extends React.Component {
         { label: 'Vapes', type: 'Vapes' },
     ];
 
+    strains = ['Indica', 'Sativa', 'Hybrid'];
+
     onTabChange = (type) => {
         this.setState({ activeTab: type });
+    };
+
+    // Toggle: click the active strain again to clear the filter (show all).
+    onStrainChange = (strain) => {
+        this.setState((prev) => ({ activeStrain: prev.activeStrain === strain ? '' : strain }));
     };
 
     componentDidMount = () => {
@@ -58,6 +66,7 @@ class Hub extends React.Component {
         const cards = this.state.cardList
             ? this.state.cardList
                   .filter((card) => card.type === this.state.activeTab)
+                  .filter((card) => !this.state.activeStrain || card.strain === this.state.activeStrain)
                   .filter(this.isSearched(this.state.searchTerm))
                   .map((card, i) => (
                   <Link to={'/addCard/' + card._id} key={card._id} className="hub">
@@ -121,6 +130,23 @@ class Hub extends React.Component {
                                 onClick={() => this.onTabChange(tab.type)}
                             >
                                 {tab.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="hubStrains">
+                        {this.strains.map((strain) => (
+                            <button
+                                key={strain}
+                                type="button"
+                                className={
+                                    'hubStrain hubStrain_' +
+                                    strain +
+                                    (this.state.activeStrain === strain ? ' hubStrain_active' : '')
+                                }
+                                onClick={() => this.onStrainChange(strain)}
+                            >
+                                {strain}
                             </button>
                         ))}
                     </div>

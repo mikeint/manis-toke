@@ -84,9 +84,24 @@ const CardsContainer = () => {
                     // Final cards with spacers between groups in correct order
                     const isFlower = type?.toLowerCase() === 'flower';
                     const isEdibles = type?.toLowerCase() === 'edibles';
+                    const isVapes = normalizedType === 'vapes';
 
                     let cardsWithSpacer;
-                    if (isEdibles) {
+                    if (isVapes) {
+                        // Split vapes by vapeType, each group introduced by a labeled arrow spacer
+                        const vapeCards = non14or28gCards.filter((card) => card.vapeType === 'vape');
+                        const disposibleCards = non14or28gCards.filter((card) => card.vapeType === 'disposible');
+                        const otherVapes = non14or28gCards.filter(
+                            (card) => card.vapeType !== 'vape' && card.vapeType !== 'disposible',
+                        );
+                        cardsWithSpacer = [
+                            vapeCards.length ? { isSpacer: true, id: 'spacerVapes', label: 'Vapes' } : null,
+                            ...vapeCards,
+                            disposibleCards.length ? { isSpacer: true, id: 'spacerDisposibles', label: 'Disposables' } : null,
+                            ...disposibleCards,
+                            ...otherVapes,
+                        ].filter(Boolean);
+                    } else if (isEdibles) {
                         // Split edibles by edibleType, each group introduced by a labeled arrow spacer
                         const gummieCards = non14or28gCards.filter((card) => card.edibleType === 'gummie');
                         const chocolateCards = non14or28gCards.filter((card) => card.edibleType === 'chocolate');
@@ -113,7 +128,10 @@ const CardsContainer = () => {
                     return cardsWithSpacer.map((card, index) => {
                         if (card.isSpacer)
                             return (
-                                <div key={card.id} className={`card card-flower card-spacer ${card.id}`}>
+                                <div
+                                    key={card.id}
+                                    className={clsx('card card-flower card-spacer', card.id, { 'card-grid14x5': isVapes || isEdibles })}
+                                >
                                     {card.label ? <div className="card-spacer__label">{card.label}</div> : null}
                                     <div className="arrow">
                                         <div className="arrow__wrapper">
@@ -129,8 +147,16 @@ const CardsContainer = () => {
                                 </div>
                             );
 
+                        const cardType = card.type?.toLowerCase();
+                        const isGrid14x5 = cardType === 'vapes' || cardType === 'edibles';
                         return (
-                            <div className={clsx('card', { 'card-flower': card.type?.toLowerCase() === 'flower' })} key={card._id || index}>
+                            <div
+                                className={clsx('card', {
+                                    'card-flower': cardType === 'flower' || isGrid14x5,
+                                    'card-grid14x5': isGrid14x5,
+                                })}
+                                key={card._id || index}
+                            >
                                 <div className="front">
                                     <section>
                                         <div className={'card__topContainer ' + card.strain}>
@@ -154,6 +180,11 @@ const CardsContainer = () => {
                                             {card.type === 'Edibles' && card.edibleType ? (
                                                 <div className="card__edibleType">{card.edibleType}</div>
                                             ) : null}
+                                            {card.type === 'Vapes' && card.vapeType ? (
+                                                <div className="card__edibleType">
+                                                    {card.vapeType === 'disposible' ? 'Disposable' : 'Vape'}
+                                                </div>
+                                            ) : null}
                                             {card.nameCross ? <div className="card__nameCross">{card.nameCross}</div> : null}
                                             {(() => {
                                                 const values = [
@@ -173,6 +204,9 @@ const CardsContainer = () => {
                                                     </div>
                                                 );
                                             })()}
+                                            {card.terpenes ? (
+                                                <div className="card__terpenes">Terpenes {card.terpenes}%</div>
+                                            ) : null}
                                             <div className="card__description">{card.description}</div>
                                             {card.company_image ? (
                                                 <div className="card__image">

@@ -118,6 +118,50 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+/* Strain filters: sit directly under the tabs, smaller, brand-colored when active */
+.hubStrains {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 90%;
+    max-width: 900px;
+    margin: -10px auto 20px;
+}
+
+.hubStrain {
+    flex: 1;
+    min-width: 100px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.hubStrain_Indica { border-color: #8a2be2; color: #8a2be2; }
+.hubStrain_Sativa { border-color: #91271a; color: #91271a; }
+.hubStrain_Hybrid { border-color: #117b4d; color: #117b4d; }
+
+.hubStrain:hover {
+    color: #fff;
+}
+.hubStrain_Indica:hover { background: #8a2be2; }
+.hubStrain_Sativa:hover { background: #91271a; }
+.hubStrain_Hybrid:hover { background: #117b4d; }
+
+.hubStrain_active {
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.hubStrain_Indica.hubStrain_active { background: #8a2be2; }
+.hubStrain_Sativa.hubStrain_active { background: #91271a; }
+.hubStrain_Hybrid.hubStrain_active { background: #117b4d; }
+
 
 @media only screen and (max-width: 1080px) {
     .hub {

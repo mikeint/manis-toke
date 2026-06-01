@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.61781cf1.css",
-    "main.js": "/static/js/main.fdd86a75.js",
+    "main.css": "/static/css/main.2500ba91.css",
+    "main.js": "/static/js/main.a100a1db.js",
     "static/media/fire.gif": "/static/media/fire.19dfa539d496ca864f08.gif",
     "static/media/manisGif.gif": "/static/media/manisGif.9532ba5c346b4c46e82a.gif",
     "static/media/manisGif22.gif": "/static/media/manisGif22.07fbe6a2c55dec009583.gif",
     "static/media/manisGif21.gif": "/static/media/manisGif21.d93ae854cd2302520c23.gif",
     "static/media/logo.png": "/static/media/logo.ea57e59811ac688c0033.png",
+    "static/media/disposibles.png": "/static/media/disposibles.3e6df9ba375b42d27524.png",
     "static/media/gummie.png": "/static/media/gummie.7d852fcaf404456efa0a.png",
     "static/media/chocolate.png": "/static/media/chocolate.fadda2cf6feddb5fe7af.png",
     "static/media/logo_indica.png": "/static/media/logo_indica.e76d31918a784f24d75d.png",
@@ -14,12 +15,13 @@
     "static/media/logo_sativa.png": "/static/media/logo_sativa.8eceea8a7ef005bd5965.png",
     "static/media/ClarendonBTRoman.ttf": "/static/media/ClarendonBTRoman.ea332e8424dbc5c4e775.ttf",
     "static/media/manis.png": "/static/media/manis.468873ff45684fbb806e.png",
+    "static/media/vapes.png": "/static/media/vapes.b562d60ea4a0a095f3fd.png",
     "index.html": "/index.html",
-    "main.61781cf1.css.map": "/static/css/main.61781cf1.css.map",
-    "main.fdd86a75.js.map": "/static/js/main.fdd86a75.js.map"
+    "main.2500ba91.css.map": "/static/css/main.2500ba91.css.map",
+    "main.a100a1db.js.map": "/static/js/main.a100a1db.js.map"
   },
   "entrypoints": [
-    "static/css/main.61781cf1.css",
-    "static/js/main.fdd86a75.js"
+    "static/css/main.2500ba91.css",
+    "static/js/main.a100a1db.js"
   ]
 }

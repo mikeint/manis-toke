@@ -166,6 +166,15 @@
     text-align: center;
 }
 
+.form-second-type {
+    width: 70px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-align-last: center;
+}
+
 .form-amount {
     width: 60px;
     height: 30px;
@@ -203,7 +212,7 @@
     cursor: none;
     width: 315px !important;
     position: relative !important;
-    height: 570px !important;
+    height: 630px !important;
     border: 5px solid black !important;
     display: flex !important;
     flex-direction: column !important;
@@ -250,6 +259,29 @@
 
 .card__name_static {
     padding: 0px 10px !important;
+}
+
+/* Static (card-creation) bottom area: grow to fit the extra Terpenes field. */
+.card__bottomContainer_static {
+    flex: 1;
+}
+
+.card__terpenes_static {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 5px 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0b8341;
+}
+
+.card__terpenes_static .form-terpenes {
+    width: 90px;
+    height: 35px;
+    font-size: 18px;
+    text-align: center;
 }
 
 .card__values-thc_static {

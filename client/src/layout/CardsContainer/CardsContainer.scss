@@ -76,6 +76,12 @@
     }
 }
 
+/* Vapes / Edibles grid: 14 across (from card-flower) x 5 rows.
+   100vh / 5 rows minus the 0.3vh top+bottom margins per card. */
+.card.card-flower.card-grid14x5 {
+    height: 19vh !important;
+}
+
 /* TOP CONTAINER */
 .card__topContainer {
     width: 100%;
@@ -261,6 +267,15 @@
     border: 1px solid #8a2be2;
 }
 
+.card__terpenes {
+    margin: 2px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: bold;
+    color: #0b8341;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .card__description {
     margin: 2px;
     overflow-y: scroll;
@@ -432,15 +447,19 @@
 }
 .card-spacer.spacer1 {background-image: url("../../layout/images/bags14.png") !important;}
 .card-spacer.spacer2 {background-image: url("../../layout/images/bags28.png") !important;}
-/* Edible spacers: faded + angled image behind the label/arrows */
+/* Edible / vape spacers: faded + angled image behind the label/arrows */
 .card-spacer.spacerGummies,
-.card-spacer.spacerChocolate {
+.card-spacer.spacerChocolate,
+.card-spacer.spacerVapes,
+.card-spacer.spacerDisposibles {
     background-image: none !important;
     overflow: hidden;
 }
 
 .card-spacer.spacerGummies::before,
-.card-spacer.spacerChocolate::before {
+.card-spacer.spacerChocolate::before,
+.card-spacer.spacerVapes::before,
+.card-spacer.spacerDisposibles::before {
     content: '';
     position: absolute;
     top: 0;
@@ -457,6 +476,11 @@
 
 .card-spacer.spacerGummies::before {background-image: url("../../layout/images/gummie.png");}
 .card-spacer.spacerChocolate::before {background-image: url("../../layout/images/chocolate.png");}
+.card-spacer.spacerVapes::before {
+    background-image: url("../../layout/images/vapes.png");
+    background-size: 90px;
+}
+.card-spacer.spacerDisposibles::before {background-image: url("../../layout/images/disposibles.png");}
 
 .card-spacer__label {
     position: relative;

@@ -14,12 +14,15 @@ const AddCard = () => {
         strain: 'Indica',
         type: 'Pre-roll',
         edibleType: '',
+        vapeType: '',
         name: '',
         nameCross: '',
         thc: '',
         cbd: '',
         cbg: '',
         cbn: '',
+        secondType: 'cbd',
+        terpenes: '',
         description: '',
         amount: '',
         price: '',
@@ -66,12 +69,16 @@ const AddCard = () => {
                     strain: data.strain || '',
                     type: data.type || '',
                     edibleType: data.edibleType || '',
+                    vapeType: data.vapeType || '',
                     name: data.name || '',
                     nameCross: data.nameCross || '',
                     thc: data.thc || '',
                     cbd: data.cbd || '',
                     cbg: data.cbg || '',
                     cbn: data.cbn || '',
+                    // Default the second box to whichever secondary cannabinoid the card already uses.
+                    secondType: data.cbg ? 'cbg' : data.cbn ? 'cbn' : 'cbd',
+                    terpenes: data.terpenes || '',
                     description: data.description || '',
                     amount: data.amount || '',
                     price: data.price || '',
@@ -143,12 +150,15 @@ const AddCard = () => {
                 data.append('strain', state.strain);
                 data.append('type', state.type);
                 data.append('edibleType', state.type === 'Edibles' ? state.edibleType : '');
+                data.append('vapeType', state.type === 'Vapes' ? state.vapeType : '');
                 data.append('name', state.name);
                 data.append('nameCross', state.nameCross);
                 data.append('thc', state.thc);
-                data.append('cbd', state.cbd);
-                data.append('cbg', state.cbg);
-                data.append('cbn', state.cbn);
+                // Only the selected secondary cannabinoid is saved; the other two are cleared.
+                data.append('cbd', state.secondType === 'cbd' ? state.cbd : '');
+                data.append('cbg', state.secondType === 'cbg' ? state.cbg : '');
+                data.append('cbn', state.secondType === 'cbn' ? state.cbn : '');
+                data.append('terpenes', state.terpenes);
                 data.append('description', state.description);
                 data.append('amount', state.amount);
                 data.append('price', state.price);
@@ -256,7 +266,7 @@ const AddCard = () => {
                                         </select>
                                     </div>
                                 </div>
-                                <div className="card__bottomContainer">
+                                <div className="card__bottomContainer card__bottomContainer_static">
                                     <div className="card__name card__name_static">
                                         <input
                                             name="name"
@@ -267,7 +277,7 @@ const AddCard = () => {
                                             value={state.name}
                                         />
                                     </div>
-                                    {state.type !== 'Edibles' ? (
+                                    {state.type !== 'Edibles' && state.type !== 'Vapes' ? (
                                         <div className="card__name card__name_static">
                                             <input
                                                 name="nameCross"
@@ -277,6 +287,26 @@ const AddCard = () => {
                                                 onChange={handleChange}
                                                 value={state.nameCross}
                                             />
+                                        </div>
+                                    ) : null}
+                                    {state.type === 'Vapes' ? (
+                                        <div className="card__name card__name_static card__edibleType_static">
+                                            <button
+                                                type="button"
+                                                className={'edibleTypeBtn' + (state.vapeType === 'vape' ? ' edibleTypeBtn_active' : '')}
+                                                onClick={() => setState({ ...state, vapeType: 'vape' })}
+                                            >
+                                                Vapes
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className={
+                                                    'edibleTypeBtn' + (state.vapeType === 'disposible' ? ' edibleTypeBtn_active' : '')
+                                                }
+                                                onClick={() => setState({ ...state, vapeType: 'disposible' })}
+                                            >
+                                                Disposables
+                                            </button>
                                         </div>
                                     ) : null}
                                     {state.type === 'Edibles' ? (
@@ -315,47 +345,44 @@ const AddCard = () => {
                                             </div>
                                         </div>
                                         <div className={'card__values-cbd card__values-thc_static ' + state.strain}>
-                                            <div className="card__values-thc-name">CBD</div>
+                                            <div className="card__values-thc-name">
+                                                <select
+                                                    name="secondType"
+                                                    className="form-second-type"
+                                                    onChange={handleChange}
+                                                    value={state.secondType}
+                                                >
+                                                    <option value="cbd">CBD</option>
+                                                    <option value="cbg">CBG</option>
+                                                    <option value="cbn">CBN</option>
+                                                </select>
+                                            </div>
                                             <div className="card__values-thc-value">
                                                 <input
-                                                    name="cbd"
+                                                    name={state.secondType}
                                                     type="text"
-                                                    placeholder="cbd"
+                                                    placeholder={state.secondType}
                                                     className="form-thc"
                                                     onChange={handleChange}
-                                                    value={state.cbd}
+                                                    value={state[state.secondType]}
                                                 />
                                                 %
                                             </div>
                                         </div>
-                                        <div className={'card__values-cbd card__values-thc_static ' + state.strain}>
-                                            <div className="card__values-thc-name">CBG</div>
-                                            <div className="card__values-thc-value">
-                                                <input
-                                                    name="cbg"
-                                                    type="text"
-                                                    placeholder="cbg"
-                                                    className="form-thc"
-                                                    onChange={handleChange}
-                                                    value={state.cbg}
-                                                />
-                                                %
-                                            </div>
-                                        </div>
-                                        <div className={'card__values-cbd card__values-thc_static ' + state.strain}>
-                                            <div className="card__values-thc-name">CBN</div>
-                                            <div className="card__values-thc-value">
-                                                <input
-                                                    name="cbn"
-                                                    type="text"
-                                                    placeholder="cbn"
-                                                    className="form-thc"
-                                                    onChange={handleChange}
-                                                    value={state.cbn}
-                                                />
-                                                %
-                                            </div>
-                                        </div>
+                                    </div>
+                                    <div className="card__terpenes card__terpenes_static">
+                                        <span className="card__terpenes-label">Terpenes</span>
+                                        <input
+                                            name="terpenes"
+                                            type="number"
+                                            step="0.01"
+                                            min="0"
+                                            placeholder="e.g. 3.43"
+                                            className="form-terpenes"
+                                            onChange={handleChange}
+                                            value={state.terpenes}
+                                        />
+                                        %
                                     </div>
                                     <div className="card__description card__description_static">
                                         <textarea
