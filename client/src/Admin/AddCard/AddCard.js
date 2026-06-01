@@ -377,7 +377,7 @@ const AddCard = () => {
                                             type="number"
                                             step="0.01"
                                             min="0"
-                                            placeholder="e.g. 3.43"
+                                            placeholder="terpes"
                                             className="form-terpenes"
                                             onChange={handleChange}
                                             value={state.terpenes}
