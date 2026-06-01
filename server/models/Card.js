@@ -12,6 +12,9 @@ const Cardschema = new Schema({
     edibleType: {
         type: String,
     },
+    vapeType: {
+        type: String,
+    },
     name: {
         type: String,
     },
@@ -28,6 +31,9 @@ const Cardschema = new Schema({
         type: String,
     },
     cbn: {
+        type: String,
+    },
+    terpenes: {
         type: String,
     },
     description: {
