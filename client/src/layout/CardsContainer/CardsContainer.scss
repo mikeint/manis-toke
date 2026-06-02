@@ -16,6 +16,10 @@
 .cardsBGcolor-hybrid {
     box-shadow: inset 0px 0px 250px 30px #117b4d8f;
 }
+/* All-strains page (strain wildcard, e.g. edibles/vapes): Mani Toke green */
+.cardsBGcolor-all {
+    box-shadow: inset 0px 0px 250px 30px #0b83418f;
+}
 
 .card {
     background: #fff;
@@ -79,7 +83,15 @@
 /* Vapes / Edibles grid: 14 across (from card-flower) x 5 rows.
    100vh / 5 rows minus the 0.3vh top+bottom margins per card. */
 .card.card-flower.card-grid14x5 {
-    height: 19vh !important;
+    height: 19.4vh !important;
+
+    .card__strain {
+        font-size: 23px !important;
+    }
+    .card__topContainer {
+        padding: 0 !important;
+        height: 32px !important;
+    }
 }
 
 /* TOP CONTAINER */

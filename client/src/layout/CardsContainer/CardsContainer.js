@@ -16,6 +16,9 @@ const CardsContainer = () => {
     const isLoading = useRef(false);
     const { strain, type } = useParams();
 
+    // A strain of "*" means "show every strain" (e.g. /strain/*/type/edibles).
+    const allStrains = strain === '*';
+
     // Map URL type tokens to the type value stored on the card (set by the AddCard dropdown).
     // Lets short/alternate URLs like /type/vape and /type/eddible match "Vapes" / "Edibles".
     const typeAliases = {
@@ -32,7 +35,7 @@ const CardsContainer = () => {
             isLoading.current = true;
             axios
                 .get('/api/cards/cardList', {
-                    params: { onReserve: true, strain: strain.toLowerCase(), type: normalizedType },
+                    params: { onReserve: true, ...(allStrains ? {} : { strain: strain.toLowerCase() }), type: normalizedType },
                 })
                 .then((res) => {
                     setCardList(res.data);
@@ -55,11 +58,13 @@ const CardsContainer = () => {
     }, []);
 
     const cards = (
-        <div className={'cardsBGcolor cardsBGcolor-' + strain}>
+        <div className={'cardsBGcolor cardsBGcolor-' + (allStrains ? 'all' : strain)}>
             <div className="cardsContainer">
                 {(() => {
                     const filteredCards = cardList?.filter(
-                        (card) => card.strain?.toLowerCase() === strain.toLowerCase() && card.type?.toLowerCase() === normalizedType,
+                        (card) =>
+                            (allStrains || card.strain?.toLowerCase() === strain.toLowerCase()) &&
+                            card.type?.toLowerCase() === normalizedType,
                     );
 
                     // All cards except 14g and 28g, sort by THC descending
