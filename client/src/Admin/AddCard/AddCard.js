@@ -329,9 +329,7 @@ const AddCard = () => {
                                             </button>
                                             <button
                                                 type="button"
-                                                className={
-                                                    'edibleTypeBtn' + (state.edibleType === 'drink' ? ' edibleTypeBtn_active' : '')
-                                                }
+                                                className={'edibleTypeBtn' + (state.edibleType === 'drink' ? ' edibleTypeBtn_active' : '')}
                                                 onClick={() => setState({ ...state, edibleType: 'drink' })}
                                             >
                                                 Drink
