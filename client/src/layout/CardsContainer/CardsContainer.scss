@@ -462,6 +462,7 @@
 /* Edible / vape spacers: faded + angled image behind the label/arrows */
 .card-spacer.spacerGummies,
 .card-spacer.spacerChocolate,
+.card-spacer.spacerDrinks,
 .card-spacer.spacerVapes,
 .card-spacer.spacerDisposibles {
     background-image: none !important;
@@ -470,6 +471,7 @@
 
 .card-spacer.spacerGummies::before,
 .card-spacer.spacerChocolate::before,
+.card-spacer.spacerDrinks::before,
 .card-spacer.spacerVapes::before,
 .card-spacer.spacerDisposibles::before {
     content: '';
@@ -488,6 +490,7 @@
 
 .card-spacer.spacerGummies::before {background-image: url("../../layout/images/gummie.png");}
 .card-spacer.spacerChocolate::before {background-image: url("../../layout/images/chocolate.png");}
+.card-spacer.spacerDrinks::before {background-image: url("../../layout/images/drinks.png");}
 .card-spacer.spacerVapes::before {
     background-image: url("../../layout/images/vapes.png");
     background-size: 90px;
@@ -495,15 +498,25 @@
 .card-spacer.spacerDisposibles::before {background-image: url("../../layout/images/disposibles.png");}
 
 .card-spacer__label {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1;
-    padding-top: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 5px 0;
     color: #fff;
     text-align: center;
-    font-size: 1.2vw;
+    font-size: clamp(6px, 1vw, 22px);
+    line-height: 1.1;
     font-weight: bold;
     text-transform: capitalize;
     font-family: Arial, Helvetica, sans-serif;
+    /* Fit the title within the card width; wrap long words rather than clipping/hiding them */
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 /* ARROW ANIMATION */

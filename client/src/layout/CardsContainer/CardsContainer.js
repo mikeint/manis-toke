@@ -110,14 +110,20 @@ const CardsContainer = () => {
                         // Split edibles by edibleType, each group introduced by a labeled arrow spacer
                         const gummieCards = non14or28gCards.filter((card) => card.edibleType === 'gummie');
                         const chocolateCards = non14or28gCards.filter((card) => card.edibleType === 'chocolate');
+                        const drinkCards = non14or28gCards.filter((card) => card.edibleType === 'drink');
                         const otherEdibles = non14or28gCards.filter(
-                            (card) => card.edibleType !== 'gummie' && card.edibleType !== 'chocolate',
+                            (card) =>
+                                card.edibleType !== 'gummie' &&
+                                card.edibleType !== 'chocolate' &&
+                                card.edibleType !== 'drink',
                         );
                         cardsWithSpacer = [
                             gummieCards.length ? { isSpacer: true, id: 'spacerGummies', label: 'Gummies' } : null,
                             ...gummieCards,
                             chocolateCards.length ? { isSpacer: true, id: 'spacerChocolate', label: 'Chocolate' } : null,
                             ...chocolateCards,
+                            drinkCards.length ? { isSpacer: true, id: 'spacerDrinks', label: 'Drinks' } : null,
+                            ...drinkCards,
                             ...otherEdibles,
                         ].filter(Boolean);
                     } else {
