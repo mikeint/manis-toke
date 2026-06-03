@@ -37,8 +37,8 @@
 
 .card.card-flower {
     height: 24.35vh !important;
-    width: calc(100% * (1 / 14) - 6px) !important;
-    margin: 0.3vh 3px !important;
+    width: calc(7.35% - 6px) !important;
+    margin: 0.2vh 1px !important;
 
     .card__topContainer {
         padding: 0 !important;
@@ -83,14 +83,51 @@
 /* Vapes / Edibles grid: 14 across (from card-flower) x 5 rows.
    100vh / 5 rows minus the 0.3vh top+bottom margins per card. */
 .card.card-flower.card-grid14x5 {
-    height: 19.4vh !important;
+    height: 19.6vh !important;
 
     .card__strain {
-        font-size: 23px !important;
+        font-size: 17px !important;
     }
     .card__topContainer {
         padding: 0 !important;
-        height: 32px !important;
+        height: 21px !important;
+    }
+    .card__name {
+        padding: 1px;
+        font-size: 10px;
+        font-weight: bold;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .card__image img {
+        width: 25px !important;
+    }
+    /* Strain + edible/vape word on one line, e.g. "Indica - Vape" */
+    .card__strainRow {
+        display: flex;
+        align-items: flex-end;
+        gap: 3px;
+        position: relative;
+        z-index: 0;
+    }
+    /* Small word at the bottom, right beside the strain text */
+    .card__edibleType {
+        position: static;
+        font-size: 7px;
+        color: #fff;
+        padding-bottom: 2px;
+        color: green !important;
+    }
+    /* Keep the banners above the strain row */
+    .card__newItem  {
+        right: -88px !important;
+        top: 5px !important;
+        z-index: 3 !important;
+    }
+    .card__reccoItem {
+        right: -192px !important;
+        top: 20px !important;
+        z-index: 3 !important;
     }
 }
 
@@ -481,7 +518,7 @@
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    background-size: 130px;
+    background-size: 91px;
     background-position: center;
     opacity: 0.35;
     transform: rotate(-12deg);
@@ -493,7 +530,7 @@
 .card-spacer.spacerDrinks::before {background-image: url("../../layout/images/drinks.png");}
 .card-spacer.spacerVapes::before {
     background-image: url("../../layout/images/vapes.png");
-    background-size: 90px;
+    background-size: 63px;
 }
 .card-spacer.spacerDisposibles::before {background-image: url("../../layout/images/disposibles.png");}
 
@@ -539,6 +576,11 @@
     border-right: 5px solid white;
     transform: rotate(-45deg);
     margin-bottom: 40px;
+}
+/* Vapes/Edibles spacer arrows: smaller than the flower bag spacers */
+.card-grid14x5 .arrow__wrapper span {
+    width: 1.4vw;
+    height: 1.4vw;
 }
 @keyframes animateRight {
     0% {

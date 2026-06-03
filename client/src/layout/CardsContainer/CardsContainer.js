@@ -171,7 +171,17 @@ const CardsContainer = () => {
                                 <div className="front">
                                     <section>
                                         <div className={'card__topContainer ' + card.strain}>
-                                            <div className={'card__strain ' + card.strain}>{card.strain}</div>
+                                            <div className="card__strainRow">
+                                                <div className={'card__strain ' + card.strain}>{card.strain}</div>
+                                                {card.type === 'Edibles' && card.edibleType ? (
+                                                    <div className="card__edibleType">- {card.edibleType}</div>
+                                                ) : null}
+                                                {card.type === 'Vapes' && card.vapeType ? (
+                                                    <div className="card__edibleType">
+                                                        - {card.vapeType === 'disposible' ? 'Disposable' : 'Vape'}
+                                                    </div>
+                                                ) : null}
+                                            </div>
                                             <div className={'card__strain-smtext ' + card.strain}>{card.type}</div>
                                             <div className={card.newCheckBtn ? 'card__newItem' : 'card__newItemHide'}>NEW</div>
                                             <div
@@ -188,14 +198,6 @@ const CardsContainer = () => {
                                         </div>
                                         <div className="card__bottomContainer">
                                             <div className="card__name">{card.name}</div>
-                                            {card.type === 'Edibles' && card.edibleType ? (
-                                                <div className="card__edibleType">{card.edibleType}</div>
-                                            ) : null}
-                                            {card.type === 'Vapes' && card.vapeType ? (
-                                                <div className="card__edibleType">
-                                                    {card.vapeType === 'disposible' ? 'Disposable' : 'Vape'}
-                                                </div>
-                                            ) : null}
                                             {card.nameCross ? <div className="card__nameCross">{card.nameCross}</div> : null}
                                             {(() => {
                                                 const values = [
