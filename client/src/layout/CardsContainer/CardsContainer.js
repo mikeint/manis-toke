@@ -67,13 +67,24 @@ const CardsContainer = () => {
                             card.type?.toLowerCase() === normalizedType,
                     );
 
-                    // All cards except 14g and 28g, sort by THC descending
+                    // Highest THC value from a "10-20" style range (uses the upper bound).
+                    const thcValue = (card) => {
+                        const parts = (card.thc || '').split('-');
+                        return parseFloat(parts[parts.length - 1]) || 0;
+                    };
+
+                    // When showing all strains, group by strain (Sativa > Hybrid > Indica),
+                    // then THC descending within each strain. Single-strain routes are unaffected.
+                    const strainRank = { sativa: 0, hybrid: 1, indica: 2 };
+
+                    // All cards except 14g and 28g, sorted by strain then THC descending
                     const non14or28gCards = filteredCards
                         .filter((card) => card.amount !== '14g' && card.amount !== '28g')
                         .sort((x, y) => {
-                            const yTHC = (y.thc || '').split('-');
-                            const xTHC = (x.thc || '').split('-');
-                            return (parseFloat(yTHC[yTHC.length - 1]) || 0) - (parseFloat(xTHC[xTHC.length - 1]) || 0);
+                            const xRank = strainRank[x.strain?.toLowerCase()] ?? 99;
+                            const yRank = strainRank[y.strain?.toLowerCase()] ?? 99;
+                            if (xRank !== yRank) return xRank - yRank;
+                            return thcValue(y) - thcValue(x);
                         });
 
                     // All 14g cards sorted by price ascending
