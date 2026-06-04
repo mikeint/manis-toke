@@ -362,6 +362,7 @@ const AddCard = () => {
                                                     <option value="cbd">CBD</option>
                                                     <option value="cbg">CBG</option>
                                                     <option value="cbn">CBN</option>
+                                                    <option value="cbc">CBC</option>
                                                 </select>
                                             </div>
                                             <div className="card__values-thc-value">

@@ -111,7 +111,6 @@ const CardsContainer = () => {
                             (card) => card.vapeType !== 'vape' && card.vapeType !== 'disposible',
                         );
                         cardsWithSpacer = [
-                            vapeCards.length ? { isSpacer: true, id: 'spacerVapes', label: 'Vapes' } : null,
                             ...vapeCards,
                             disposibleCards.length ? { isSpacer: true, id: 'spacerDisposibles', label: 'Disposables' } : null,
                             ...disposibleCards,
