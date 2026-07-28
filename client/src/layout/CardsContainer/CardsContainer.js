@@ -77,15 +77,18 @@ const CardsContainer = () => {
                     // then THC descending within each strain. Single-strain routes are unaffected.
                     const strainRank = { sativa: 0, hybrid: 1, indica: 2 };
 
-                    // All cards except 14g and 28g, sorted by strain then THC descending
-                    const non14or28gCards = filteredCards
-                        .filter((card) => card.amount !== '14g' && card.amount !== '28g')
+                    // All cards except 7g, 14g and 28g, sorted by strain then THC descending
+                    const non7or14or28gCards = filteredCards
+                        .filter((card) => card.amount !== '7g' && card.amount !== '14g' && card.amount !== '28g')
                         .sort((x, y) => {
                             const xRank = strainRank[x.strain?.toLowerCase()] ?? 99;
                             const yRank = strainRank[y.strain?.toLowerCase()] ?? 99;
                             if (xRank !== yRank) return xRank - yRank;
                             return thcValue(y) - thcValue(x);
                         });
+
+                    // All 7g cards sorted by THC descending
+                    const only7gCards = filteredCards.filter((card) => card.amount === '7g').sort((a, b) => thcValue(b) - thcValue(a));
 
                     // All 14g cards sorted by price ascending
                     const only14gCards = filteredCards
@@ -105,11 +108,9 @@ const CardsContainer = () => {
                     let cardsWithSpacer;
                     if (isVapes) {
                         // Split vapes by vapeType, each group introduced by a labeled arrow spacer
-                        const vapeCards = non14or28gCards.filter((card) => card.vapeType === 'vape');
-                        const disposibleCards = non14or28gCards.filter((card) => card.vapeType === 'disposible');
-                        const otherVapes = non14or28gCards.filter(
-                            (card) => card.vapeType !== 'vape' && card.vapeType !== 'disposible',
-                        );
+                        const vapeCards = non7or14or28gCards.filter((card) => card.vapeType === 'vape');
+                        const disposibleCards = non7or14or28gCards.filter((card) => card.vapeType === 'disposible');
+                        const otherVapes = non7or14or28gCards.filter((card) => card.vapeType !== 'vape' && card.vapeType !== 'disposible');
                         cardsWithSpacer = [
                             ...vapeCards,
                             disposibleCards.length ? { isSpacer: true, id: 'spacerDisposibles', label: 'Disposables' } : null,
@@ -118,14 +119,11 @@ const CardsContainer = () => {
                         ].filter(Boolean);
                     } else if (isEdibles) {
                         // Split edibles by edibleType, each group introduced by a labeled arrow spacer
-                        const gummieCards = non14or28gCards.filter((card) => card.edibleType === 'gummie');
-                        const chocolateCards = non14or28gCards.filter((card) => card.edibleType === 'chocolate');
-                        const drinkCards = non14or28gCards.filter((card) => card.edibleType === 'drink');
-                        const otherEdibles = non14or28gCards.filter(
-                            (card) =>
-                                card.edibleType !== 'gummie' &&
-                                card.edibleType !== 'chocolate' &&
-                                card.edibleType !== 'drink',
+                        const gummieCards = non7or14or28gCards.filter((card) => card.edibleType === 'gummie');
+                        const chocolateCards = non7or14or28gCards.filter((card) => card.edibleType === 'chocolate');
+                        const drinkCards = non7or14or28gCards.filter((card) => card.edibleType === 'drink');
+                        const otherEdibles = non7or14or28gCards.filter(
+                            (card) => card.edibleType !== 'gummie' && card.edibleType !== 'chocolate' && card.edibleType !== 'drink',
                         );
                         cardsWithSpacer = [
                             gummieCards.length ? { isSpacer: true, id: 'spacerGummies', label: 'Gummies' } : null,
@@ -138,7 +136,9 @@ const CardsContainer = () => {
                         ].filter(Boolean);
                     } else {
                         cardsWithSpacer = [
-                            ...non14or28gCards,
+                            ...non7or14or28gCards,
+                            isFlower ? { isSpacer: true, id: 'spacer7' } : null,
+                            ...only7gCards,
                             isFlower ? { isSpacer: true, id: 'spacer1' } : null,
                             ...only14gCards,
                             isFlower ? { isSpacer: true, id: 'spacer2' } : null,
@@ -227,9 +227,7 @@ const CardsContainer = () => {
                                                     </div>
                                                 );
                                             })()}
-                                            {card.terpenes ? (
-                                                <div className="card__terpenes">Terpenes {card.terpenes}%</div>
-                                            ) : null}
+                                            {card.terpenes ? <div className="card__terpenes">Terpenes {card.terpenes}%</div> : null}
                                             <div className="card__description">{card.description}</div>
                                             {card.company_image ? (
                                                 <div className="card__image">
