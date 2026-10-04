@@ -170,6 +170,8 @@ const CardsContainer = () => {
 
                         const cardType = card.type?.toLowerCase();
                         const isGrid14x5 = cardType === 'vapes' || cardType === 'edibles';
+                        // Edibles are dosed in milligrams; everything else shows a percentage
+                        const unit = cardType === 'edibles' ? 'mg' : '%';
                         return (
                             <div
                                 className={clsx('card', {
@@ -221,13 +223,13 @@ const CardsContainer = () => {
                                                         {values.map((v) => (
                                                             <div className={'card__values-thc ' + card.strain} key={v.name}>
                                                                 <div className="card__values-thc-name">{v.name}</div>
-                                                                <div className="card__values-thc-value">{v.value}%</div>
+                                                                <div className="card__values-thc-value">{v.value}{unit}</div>
                                                             </div>
                                                         ))}
                                                     </div>
                                                 );
                                             })()}
-                                            {card.terpenes ? <div className="card__terpenes">Terpenes {card.terpenes}%</div> : null}
+                                            {card.terpenes ? <div className="card__terpenes">Terpenes {card.terpenes}{unit}</div> : null}
                                             <div className="card__description">{card.description}</div>
                                             {card.company_image ? (
                                                 <div className="card__image">
