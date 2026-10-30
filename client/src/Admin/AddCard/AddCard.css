@@ -314,15 +314,17 @@
 
 .card__edibleType_static {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
+    gap: 6px 8px;
     margin: 5px 0;
 }
 
 .edibleTypeBtn {
-    flex: 1;
+    /* Two per row, so all four edible types fit inside the card */
+    flex: 1 1 40%;
     max-width: 120px;
-    padding: 8px 10px;
+    padding: 6px 4px;
     font-size: 14px;
     font-weight: bold;
     color: #000;

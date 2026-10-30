@@ -11,6 +11,27 @@ import manisGif22 from '../images/manisGif22.gif';
 import manis from '../images/manis.png';
 import logo from '../images/logo.png';
 
+// Edible sub-types, in the order their groups appear on the Edibles page.
+const EDIBLE_TYPES = ['gummie', 'chocolate', 'drink', 'capsule'];
+
+// Keywords used to place edibles that were saved without an edibleType (checked in this order).
+const EDIBLE_KEYWORDS = [
+    ['capsule', /\b(caps?|capsules?|softgels?|gel ?caps?|pills?|tablets?)\b/i],
+    ['drink', /\b(drinks?|soda|seltzer|lemonade|cola|tea|beverage|juice|tonic)\b/i],
+    ['chocolate', /chocolate|cocoa/i],
+    ['gummie', /gumm|chews?\b/i],
+];
+
+// The card's edibleType, or a best guess from its name then description when none was chosen.
+const edibleTypeOf = (card) => {
+    if (EDIBLE_TYPES.includes(card.edibleType)) return card.edibleType;
+    for (const text of [card.name, card.description]) {
+        const match = EDIBLE_KEYWORDS.find(([, regex]) => regex.test(text || ''));
+        if (match) return match[0];
+    }
+    return '';
+};
+
 const CardsContainer = () => {
     const [cardList, setCardList] = useState([]);
     const isLoading = useRef(false);
@@ -119,13 +140,11 @@ const CardsContainer = () => {
                         ].filter(Boolean);
                     } else if (isEdibles) {
                         // Split edibles by edibleType, each group introduced by a labeled arrow spacer
-                        const gummieCards = non7or14or28gCards.filter((card) => card.edibleType === 'gummie');
-                        const chocolateCards = non7or14or28gCards.filter((card) => card.edibleType === 'chocolate');
-                        const drinkCards = non7or14or28gCards.filter((card) => card.edibleType === 'drink');
-                        const capsuleCards = non7or14or28gCards.filter((card) => card.edibleType === 'capsule');
-                        const otherEdibles = non7or14or28gCards.filter(
-                            (card) => !['gummie', 'chocolate', 'drink', 'capsule'].includes(card.edibleType),
-                        );
+                        const gummieCards = non7or14or28gCards.filter((card) => edibleTypeOf(card) === 'gummie');
+                        const chocolateCards = non7or14or28gCards.filter((card) => edibleTypeOf(card) === 'chocolate');
+                        const drinkCards = non7or14or28gCards.filter((card) => edibleTypeOf(card) === 'drink');
+                        const capsuleCards = non7or14or28gCards.filter((card) => edibleTypeOf(card) === 'capsule');
+                        const otherEdibles = non7or14or28gCards.filter((card) => !edibleTypeOf(card));
                         cardsWithSpacer = [
                             gummieCards.length ? { isSpacer: true, id: 'spacerGummies', label: 'Gummies' } : null,
                             ...gummieCards,
@@ -188,8 +207,8 @@ const CardsContainer = () => {
                                         <div className={'card__topContainer ' + card.strain}>
                                             <div className="card__strainRow">
                                                 <div className={'card__strain ' + card.strain}>{card.strain}</div>
-                                                {card.type === 'Edibles' && card.edibleType ? (
-                                                    <div className="card__edibleType">- {card.edibleType}</div>
+                                                {card.type === 'Edibles' && edibleTypeOf(card) ? (
+                                                    <div className="card__edibleType">- {edibleTypeOf(card)}</div>
                                                 ) : null}
                                                 {card.type === 'Vapes' && card.vapeType ? (
                                                     <div className="card__edibleType">
