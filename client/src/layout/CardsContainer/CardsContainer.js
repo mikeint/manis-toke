@@ -122,8 +122,9 @@ const CardsContainer = () => {
                         const gummieCards = non7or14or28gCards.filter((card) => card.edibleType === 'gummie');
                         const chocolateCards = non7or14or28gCards.filter((card) => card.edibleType === 'chocolate');
                         const drinkCards = non7or14or28gCards.filter((card) => card.edibleType === 'drink');
+                        const capsuleCards = non7or14or28gCards.filter((card) => card.edibleType === 'capsule');
                         const otherEdibles = non7or14or28gCards.filter(
-                            (card) => card.edibleType !== 'gummie' && card.edibleType !== 'chocolate' && card.edibleType !== 'drink',
+                            (card) => !['gummie', 'chocolate', 'drink', 'capsule'].includes(card.edibleType),
                         );
                         cardsWithSpacer = [
                             gummieCards.length ? { isSpacer: true, id: 'spacerGummies', label: 'Gummies' } : null,
@@ -132,6 +133,8 @@ const CardsContainer = () => {
                             ...chocolateCards,
                             drinkCards.length ? { isSpacer: true, id: 'spacerDrinks', label: 'Drinks' } : null,
                             ...drinkCards,
+                            capsuleCards.length ? { isSpacer: true, id: 'spacerCapsules', label: 'Capsules' } : null,
+                            ...capsuleCards,
                             ...otherEdibles,
                         ].filter(Boolean);
                     } else {

@@ -501,6 +501,7 @@
 .card-spacer.spacerGummies,
 .card-spacer.spacerChocolate,
 .card-spacer.spacerDrinks,
+.card-spacer.spacerCapsules,
 .card-spacer.spacerVapes,
 .card-spacer.spacerDisposibles {
     background-image: none !important;
@@ -510,6 +511,7 @@
 .card-spacer.spacerGummies::before,
 .card-spacer.spacerChocolate::before,
 .card-spacer.spacerDrinks::before,
+.card-spacer.spacerCapsules::before,
 .card-spacer.spacerVapes::before,
 .card-spacer.spacerDisposibles::before {
     content: '';
@@ -529,6 +531,10 @@
 .card-spacer.spacerGummies::before {background-image: url("../../layout/images/gummie.png");}
 .card-spacer.spacerChocolate::before {background-image: url("../../layout/images/chocolate.png");}
 .card-spacer.spacerDrinks::before {background-image: url("../../layout/images/drinks.png");}
+.card-spacer.spacerCapsules::before {
+    background-image: url("../../layout/images/capsuls.png");
+    background-size: 110px;
+}
 .card-spacer.spacerVapes::before {
     background-image: url("../../layout/images/vapes.png");
     background-size: 63px;
