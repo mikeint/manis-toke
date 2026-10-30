@@ -1,11 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.92e29e39.css",
-    "main.js": "/static/js/main.4d7b25f2.js",
+    "main.css": "/static/css/main.d7dc18ad.css",
+    "main.js": "/static/js/main.18750641.js",
     "static/media/fire.gif": "/static/media/fire.19dfa539d496ca864f08.gif",
     "static/media/manisGif.gif": "/static/media/manisGif.9532ba5c346b4c46e82a.gif",
     "static/media/manisGif22.gif": "/static/media/manisGif22.07fbe6a2c55dec009583.gif",
     "static/media/manisGif21.gif": "/static/media/manisGif21.d93ae854cd2302520c23.gif",
+    "static/media/capsuls.png": "/static/media/capsuls.ea2a0ed5bca32c66eb49.png",
     "static/media/drinks.png": "/static/media/drinks.1a001fdafed7c2888062.png",
     "static/media/logo.png": "/static/media/logo.ea57e59811ac688c0033.png",
     "static/media/disposibles.png": "/static/media/disposibles.3e6df9ba375b42d27524.png",
@@ -18,11 +19,11 @@
     "static/media/manis.png": "/static/media/manis.468873ff45684fbb806e.png",
     "static/media/vapes.png": "/static/media/vapes.b562d60ea4a0a095f3fd.png",
     "index.html": "/index.html",
-    "main.92e29e39.css.map": "/static/css/main.92e29e39.css.map",
-    "main.4d7b25f2.js.map": "/static/js/main.4d7b25f2.js.map"
+    "main.d7dc18ad.css.map": "/static/css/main.d7dc18ad.css.map",
+    "main.18750641.js.map": "/static/js/main.18750641.js.map"
   },
   "entrypoints": [
-    "static/css/main.92e29e39.css",
-    "static/js/main.4d7b25f2.js"
+    "static/css/main.d7dc18ad.css",
+    "static/js/main.18750641.js"
   ]
 }
